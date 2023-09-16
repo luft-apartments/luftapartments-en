@@ -1,27 +1,6 @@
-import { gql } from "@apollo/client";
-import client from "client";
+import { getPageStaticProps } from "utils/getPageStaticProps";
+import { Page } from "components/Page"
 
-export default function Home(props) {
-  console.log("PROPS: ", props);
-  return <div>Next JS &amp; WordPress course.</div>;
-}
+export default Page;
 
-export const getStaticProps = async () => {
-  const { data } = await client.query({
-    query: gql`
-      query NewQuery {
-        nodeByUri(uri: "/") {
-          ... on Page {
-            id
-            blocks
-          }
-        }
-      }
-    `
-  })
-  return {
-    props: {
-      blocks: data.nodeByUri.blocks,
-    }
-  }
-}
+export const getStaticProps = getPageStaticProps;

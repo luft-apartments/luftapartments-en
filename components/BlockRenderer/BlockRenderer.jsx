@@ -1,6 +1,8 @@
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
+import { Cover } from "components/Cover";
 import { theme } from "theme";
+import { Slider } from "components/Slider/Slider";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -25,6 +27,16 @@ export const BlockRenderer = ({ blocks }) => {
 
   return blocks.map(block => {
     switch (block.name) {
+      case "acf/swiperslider": {
+        const innerBlocks = objToArray(block.attributes.data, "slides");
+        console.log("SLIDER: ", innerBlocks)
+        return (
+          <Slider
+            key={block.id}
+            slides={innerBlocks}
+          />
+        )
+      }
       case "core/paragraph": {
         return (
           <Paragraph

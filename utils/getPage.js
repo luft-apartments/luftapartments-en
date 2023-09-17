@@ -7,22 +7,9 @@ export const getPage = async (uri) => {
         nodeByUri(uri: $uri) {
           __typename
           ... on Page {
-            id
-            title
             blocks
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-            seo {
-              title
-              metaDesc
-            }
           }
           ... on Post {
-            id
-            title
             date
             blocks
             categories {
@@ -30,18 +17,9 @@ export const getPage = async (uri) => {
                 name
               }
             }
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-            seo {
-              title
-              metaDesc
-            }
           }
         }
-              acfOptionsMainMenu {
+        acfOptionsMainMenu {
           mainMenu {
             logo {
               sourceUrl
@@ -102,6 +80,11 @@ export const getPage = async (uri) => {
   });
   const { data } = await response.json();
   const nodeByUri = data.nodeByUri || null;
-  const blocks = cleanAndTransformBlocks(data.nodeByUri?.blocks || []);
+  if (!data.nodeByUri) {
+    return null;
+  }
+  const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
+  // const blocks = cleanAndTransformBlocks(data.nodeByUri?.blocks || []);
+
   return blocks;
 }

@@ -22,14 +22,6 @@ export const getMenu = async () => {
                 }
                 label
               }
-              items {
-                destination {
-                  ... on Page {
-                    uri
-                  }
-                }
-                label
-              }
             }
           }
         }

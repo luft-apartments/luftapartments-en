@@ -1,18 +1,8 @@
-import client from "client";
-import { gql } from "@apollo/client";
-
 import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
-import { mapMainMenuItems } from "./mapMainMenuItems";
-import { mapSocialIcons } from "./mapSocialIcons";
-import { mapFooterSocialIcons } from "./mapFooterSocialIcons";
-import { mapFooterLinks } from "./mapFooterLinks";
 
-export const getPageStaticProps = async (context) => {
-
-  console.log("CONTEXT: ", context);
-  const uri = context.params?.slug ? `/${context.params.slug.join("/")}/` : "/";
-  const { data } = await client.query({
-    query: gql`
+export const getPage = async (uri) => {
+  const params = {
+    query: `
       query PageQuery($uri: String!) {
         nodeByUri(uri: $uri) {
           __typename
@@ -51,7 +41,7 @@ export const getPageStaticProps = async (context) => {
             }
           }
         }
-      acfOptionsMainMenu {
+              acfOptionsMainMenu {
           mainMenu {
             logo {
               sourceUrl
@@ -103,31 +93,15 @@ export const getPageStaticProps = async (context) => {
     variables: {
       uri,
     },
-  });
-
-  const nodeByUri = data.nodeByUri || null;
-
-  const blocks = cleanAndTransformBlocks(data.nodeByUri?.blocks || []);
-  const isHomePage = uri === "/";
-
-  if (nodeByUri === null) {
-    return {
-      props: {
-        error: true,
-      },
-    };
-  }
-
-  return {
-    props: {
-      seo: data.nodeByUri?.seo || null,
-      title: data.nodeByUri?.title || null,
-      date: data.nodeByUri?.date || null,
-      category: data.nodeByUri?.categories?.nodes?.[0]?.name || null,
-      blocks,
-      logo: data.acfOptionsMainMenu.mainMenu.logo.sourceUrl,
-      mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
-      featuredImage: data.nodeByUri?.featuredImage?.node?.sourceUrl || data.nodeByUri?.featuredImage?.sourceUrl || null,
-    },
   };
-};
+
+  const response = await fetch(process.env.WP_GRAPHQL_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(params),
+  });
+  const { data } = await response.json();
+  const nodeByUri = data.nodeByUri || null;
+  const blocks = cleanAndTransformBlocks(data.nodeByUri?.blocks || []);
+  return blocks;
+}

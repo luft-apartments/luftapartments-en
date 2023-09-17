@@ -9,8 +9,8 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export const MainMenu = ({ items, logo, boldText, regularText }) => {
-  console.log("items: ", items)
-  console.log("regularText: ", regularText)
+  // console.log("items: ", items)
+  // console.log("regularText: ", regularText)
   const [isNavVisible, setNavVisible] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState([]);
 

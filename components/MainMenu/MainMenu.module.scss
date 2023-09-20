@@ -1,14 +1,14 @@
 // MainMenu.module.scss
 
 .bgPrimary {
-  background-color: #9fc783;
+  background-color: #fff;
   position: sticky;
   top: -1px;
   left: 0;
   right: 0;
   z-index: 20;
   transition: all ease-in-out 0.2s;
-  height: 70px;
+  // height: 90px;
 
   @media (max-width: 768px) {
     position: fixed;
@@ -22,6 +22,20 @@
     height: 70px;
     
   }
+}
+
+.headerDescriptionText {
+  padding: 7px 0;
+  font-size: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.boldText {
+  color: #424242;
+}
+.regularText {
+  color: #424242;
 }
 
 
@@ -84,12 +98,13 @@
 .nav-item {
   position: relative;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .nav-item:hover {
   @media (min-width: 768px) {
-    background-color: #799962;
+    background-color: #ff7300;
+    color: #fff;
   }
 }
 
@@ -112,11 +127,22 @@
 }
 
 .navLink {
-  font-size: 18px;
+  font-size: clamp(0.75rem, 0.682rem + 0.34vw, 0.938rem);
+  font-weight: 500;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  color: #0170B9;
+  transition: all ease-in-out 0.2s;
+
+  &:hover {
+    @media (min-width: 768px) {
+      // background-color: #ff7300;
+      color: #fff;
+    }
+}
 
   @media (max-width: 768px) {
     font-size: 22px;

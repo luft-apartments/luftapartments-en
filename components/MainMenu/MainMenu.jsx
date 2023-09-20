@@ -78,8 +78,13 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
 
   return (
     <div className={styles.bgPrimary}>
-      <div className={styles.headerDescription}>
-        <p className={styles.headerDescriptionText}><span>{boldText}:</span> <span>{regularText}</span></p>
+      <div className="container">
+        <div className={styles.headerDescription}>
+          <p className={styles.headerDescriptionText}>
+            <span className={styles.boldText}><strong>{boldText}</strong> </span>
+            <span className={styles.regularText}>{regularText}</span>
+          </p>
+        </div>
       </div>
       <div className={styles.container}>
         <div className={styles.logo}>

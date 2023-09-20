@@ -20,3 +20,15 @@ export const getFontSizeForHeading = (level) => {
 
   return `${fontSizeMap[level] || ""}`;
 };
+
+export const getFontSizeForParagraph = (fontSize) => {
+  const fontSizeMap = {
+    "xx-large": "text-2xl",
+    "x-large": "text-xl",
+    "large": "text-lg",
+    "medium": "text-base",
+    "small": "text-sm",
+  };
+
+  return `${fontSizeMap[fontSize] || ""}`;
+}

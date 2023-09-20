@@ -9,6 +9,8 @@ import { Columns } from "components/Columns";
 import { Column } from "components/Column";
 import { IconBlock } from "components/IconBlock";
 import { DividerBlock } from "components/DividerBlock/DividerBlock";
+import { Map } from "components/Map";
+import { SliderReviews } from "components/SliderReviews";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -31,8 +33,41 @@ export const BlockRenderer = ({ blocks }) => {
     return arr;
   };
 
+  const objToArrayReviews = (data) => {
+    const arr = [];
+    const slideCount = data.slides_reviews;
+    console.log("SLIDE COUNT: ", slideCount)
+
+    for (let i = 0; i < slideCount; i++) {
+      const slideIndex = i.toString();
+      const slide = {
+        name: data[`slides_reviews_${slideIndex}_slide_slide_name`],
+        flag: data[`slides_reviews_${slideIndex}_slide_slide_flag`],
+        country: data[`slides_reviews_${slideIndex}_slide_slide_country`],
+        period: data[`slides_reviews_${slideIndex}_slide_slide_period`],
+        amountIcon: data[`slides_reviews_${slideIndex}_slide_slide_amount_icon`],
+        amountDescription: data[`slides_reviews_${slideIndex}_slide_slide_amount_description`],
+        commentGood: data[`slides_reviews_${slideIndex}_slide_slide_comment_good`],
+      };
+      arr.push(slide);
+    }
+
+    return arr;
+  }
+
   return blocks.map(block => {
     switch (block.name) {
+      case "acf/googlemap": {
+        console.log("GOOGLE MAP: ", block.attributes.data);
+        return (
+          <Map
+            key={block.id}
+            lat={block.attributes.data.google_map.lat}
+            lng={block.attributes.data.google_map.lng}
+            zoom={block.attributes.data.google_map.zoom}
+          />
+        )
+      }
       case "acf/iconblock": {
         return (
           <IconBlock
@@ -57,6 +92,16 @@ export const BlockRenderer = ({ blocks }) => {
         // console.log("SLIDER: ", innerBlocks)
         return (
           <Slider
+            key={block.id}
+            slides={innerBlocks}
+          />
+        )
+      }
+      case "acf/sliderreviews": {
+        const innerBlocks = objToArrayReviews(block.attributes.data, "slides_reviews");
+        // console.log("SLIDER REVIEWS: ", innerBlocks)
+        return (
+          <SliderReviews
             key={block.id}
             slides={innerBlocks}
           />

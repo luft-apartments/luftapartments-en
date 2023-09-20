@@ -1,0 +1,39 @@
+.slide {
+  padding: 30px 40px;
+}
+
+.slideWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slideData {
+  color: #424242;
+}
+
+.slideName {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.slideCountryName {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 10px;
+}
+
+.slidePeriod {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.slideAmount {
+  font-size: 12px;
+}

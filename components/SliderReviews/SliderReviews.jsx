@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y, Pagination, Autoplay } from 'swiper/modules';
+import { A11y, Pagination, Autoplay } from 'swiper/modules';
 import Image from 'next/image';
 import styles from './SliderReviews.module.scss';
 import 'swiper/css';
@@ -17,25 +17,16 @@ import {
 import { FaRegCalendar, FaFaceGrin } from "react-icons/fa";
 
 export const SliderReviews = ({ slides }) => {
-  console.log("SLIDESICON: ", slides.amountIcon)
   return (
     <div className="container">
       <Swiper
         loop={true}
-        // autoplay={{ delay: 3000 }}
-        modules={[Navigation, A11y, Pagination, Autoplay]}
-        navigation={{
-          nextEl: '.buttonNext',
-          prevEl: '.buttonPrev',
-        }}
+        autoplay={{ delay: 3000 }}
+        modules={[A11y, Pagination, Autoplay]}
         pagination={{
           clickable: true,
-          el: '.swiper-pagination',
-          type: 'bullets',
-          renderBullet: function (index, className) {
-            return '<span class="' + className + '">' + (index + 1) + '</span>';
-          },
         }}
+        grabCursor={true}
         className={styles.slider}
       >
         {slides.map((slide, index) => (
@@ -51,7 +42,7 @@ export const SliderReviews = ({ slides }) => {
                     <span className={styles.slideCountryName}>{slide.country}</span>
                   </div>
                   <div className={styles.slidePeriod}>
-                    <FaRegCalendar style={{ color: '#1e7ca4', fontSize: '10px' }} className={styles.slidePeriodIcon} />
+                    <FaRegCalendar className={styles.slidePeriodIcon} />
                     <p>{slide.period}</p>
                   </div>
                   <div className={styles.slideAmount}>
@@ -66,18 +57,6 @@ export const SliderReviews = ({ slides }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.buttons}>
-        <div className='buttonPrev'>
-          <button className={`${styles.sliderButton} ${styles.buttonLeft}`}>
-            <Image src='/img/arrow-left.png' alt='arrow' width={30} height={30} />
-          </button>
-        </div>
-        <div className='buttonNext'>
-          <button className={`${styles.sliderButton} ${styles.buttonRight}`}>
-            <Image src='/img/arrow-right.png' alt='arrow' width={30} height={30} />
-          </button>
-        </div>
-      </div>
     </div>
   );
 };

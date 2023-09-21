@@ -72,7 +72,7 @@ export const getOverlayColor = (overlayColor) => {
   return `${getOverlayColorMap[overlayColor] || ""}`;
 }
 
-export const getOverlayOpacity = (dimRatio) => {
+export const getOverlayOpacity = (overlayOpacity) => {
   const getOverlayOpacityMap = {
     "0": "0",
     "10": "0.1",
@@ -87,5 +87,5 @@ export const getOverlayOpacity = (dimRatio) => {
     "100": "1",
   };
 
-  return `${getOverlayOpacityMap[dimRatio] || ""}`;
+  return `${getOverlayOpacityMap[overlayOpacity] || ""}`;
 }

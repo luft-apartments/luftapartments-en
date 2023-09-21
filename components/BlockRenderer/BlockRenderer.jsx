@@ -153,6 +153,8 @@ export const BlockRenderer = ({ blocks }) => {
             key={block.id}
             background={block.attributes.url}
             overlayColor={block.attributes.overlayColor}
+            overlayOpacity={block.attributes.dimRatio}
+            minHeight={block.attributes.minHeight}
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Cover>

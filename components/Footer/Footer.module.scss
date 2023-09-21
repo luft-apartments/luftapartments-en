@@ -18,13 +18,13 @@
 }
 
 .footerDataItem {
-  &:last-child {
-    text-align: right;
+  // &:last-child {
+  //   text-align: right;
 
-    @media (max-width: 768px) {
-      text-align: center;
-    }
-  }
+  //   @media (max-width: 768px) {
+  //     text-align: center;
+  //   }
+  // }
     @media (max-width: 768px) {
       text-align: center;
     }
@@ -35,6 +35,14 @@
   font-weight: 600;
   color: #3a3a3a;
   margin-bottom: 0.625rem;
+
+    &:last-child {
+    text-align: right;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
 }
 
 .link {

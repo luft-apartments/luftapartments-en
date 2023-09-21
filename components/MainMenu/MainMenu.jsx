@@ -9,8 +9,7 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export const MainMenu = ({ items, logo, boldText, regularText }) => {
-  // console.log("items: ", items)
-  // console.log("regularText: ", regularText)
+
   const [isNavVisible, setNavVisible] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState([]);
 
@@ -32,8 +31,8 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
       start: 'top -70',
       end: 99999,
       toggleClass: {
-        className: styles.bgPrimaryScrolled,
-        targets: `.${styles.bgPrimary}`
+        className: styles.headerContainerScrolled,
+        targets: `.${styles.headerContainer}`
       }
     });
 
@@ -77,16 +76,16 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
 
 
   return (
-    <div className={styles.bgPrimary}>
-      <div className="container">
-        <div className={styles.headerDescription}>
+    <header className={styles.header}>
+      <div className={styles.headerDescription}>
+        <div className="container">
           <p className={styles.headerDescriptionText}>
             <span className={styles.boldText}><strong>{boldText}</strong> </span>
             <span className={styles.regularText}>{regularText}</span>
           </p>
         </div>
       </div>
-      <div className={styles.container}>
+      <div className={styles.headerContainer}>
         <div className={styles.logo}>
           <Link onClick={closeMenus} href="/">
             <div className={styles.logoLink}>
@@ -180,6 +179,6 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 };

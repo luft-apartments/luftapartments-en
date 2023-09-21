@@ -147,7 +147,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case 'core/cover': {
-        // console.log("BLOCK: ", block);
+        console.log("COVER: ", block.attributes);
         return (
           <Cover
             key={block.id}

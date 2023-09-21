@@ -2,7 +2,9 @@ import { Raleway, Inter } from 'next/font/google';
 
 import '../styles/globals.css';
 import { MainMenu } from 'components/MainMenu';
+import { Footer } from 'components/Footer';
 import { getMenu } from 'utils/getMenu';
+import { getFooter } from 'utils/getFooter';
 
 const raleway = Raleway({
   subsets: ['latin'],
@@ -20,6 +22,7 @@ const inter = Inter({
 
 export default async function RootLayout({ children }) {
   const data = await getMenu();
+  const footerData = await getFooter();
   return (
     <html lang="en" className={`${raleway.variable} ${inter.variable}`}>
       <body className='font-body'>
@@ -30,6 +33,12 @@ export default async function RootLayout({ children }) {
           logo={data.logo}
         />
         {children}
+        <Footer
+          copyright={footerData.copyright}
+          footerLinksApartments={footerData.footerLinksApartments}
+          footerLinksPages={footerData.footerLinksPages}
+          footerLogo={footerData.footerLogo}
+        />
       </body>
     </html>
   );

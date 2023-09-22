@@ -11,6 +11,9 @@ import { IconBlock } from "components/IconBlock";
 import { DividerBlock } from "components/DividerBlock/DividerBlock";
 import { Map } from "components/Map";
 import { SliderReviews } from "components/SliderReviews";
+import { GallerySlider } from "components/GallerySlider";
+import { ApartmentsData } from "components/ApartmentsData";
+import { ParamsBlock } from "components/ParamsBlock";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -36,7 +39,7 @@ export const BlockRenderer = ({ blocks }) => {
   const objToArrayReviews = (data) => {
     const arr = [];
     const slideCount = data.slides_reviews;
-    console.log("SLIDE COUNT: ", slideCount)
+    // console.log("SLIDE COUNT: ", slideCount)
 
     for (let i = 0; i < slideCount; i++) {
       const slideIndex = i.toString();
@@ -48,6 +51,23 @@ export const BlockRenderer = ({ blocks }) => {
         amountIcon: data[`slides_reviews_${slideIndex}_slide_slide_amount_icon`],
         amountDescription: data[`slides_reviews_${slideIndex}_slide_slide_amount_description`],
         commentGood: data[`slides_reviews_${slideIndex}_slide_slide_comment_good`],
+      };
+      arr.push(slide);
+    }
+
+    return arr;
+  }
+
+  const objToArrayGallery = (data) => {
+    const arr = [];
+    const slideCount = data.gallery;
+    // console.log("SLIDE COUNT: ", slideCount)
+
+    for (let i = 0; i < slideCount; i++) {
+      const slideIndex = i.toString();
+      const slide = {
+        image: data[`gallery_${slideIndex}_slide_image`],
+        description: data[`gallery_${slideIndex}_slide_description`],
       };
       arr.push(slide);
     }
@@ -107,6 +127,46 @@ export const BlockRenderer = ({ blocks }) => {
           />
         )
       }
+      case "acf/galleryslider": {
+        const innerBlocks = objToArrayGallery(block.attributes.data, "gallery");
+        // console.log("GALLERY: ", innerBlocks)
+        return (
+          <GallerySlider
+            key={block.id}
+            slides={innerBlocks}
+          />
+        )
+      }
+      case "acf/apartmentdata": {
+        // console.log("APARTMENT DATA: ", block.attributes);
+        return (
+          <ApartmentsData
+            key={block.id}
+            adress={block.attributes.data.adress}
+            area={block.attributes.data.area}
+            cost={block.attributes.data.cost}
+            floor={block.attributes.data.floor}
+            pets={block.attributes.data.pets}
+            rooms={block.attributes.data.rooms}
+          />
+        )
+      }
+      case "acf/params": {
+        console.log("PARAMS: ", block.attributes);
+        return (
+          <ParamsBlock
+            key={block.id}
+            balcony={block.attributes.data.balcony}
+            bedrooms={block.attributes.data.bedrooms}
+            elevator={block.attributes.data.elevator}
+            equipment={block.attributes.data.equipment}
+            furniture={block.attributes.data.furniture}
+            internet={block.attributes.data.internet}
+            parking={block.attributes.data.parking}
+            wc={block.attributes.data.wc}
+          />
+        )
+      }
       case "core/paragraph": {
         // console.log("PARAGRAPH: ", block.attributes);
         const marginTop = block.attributes.style?.spacing?.margin?.top || '0px';
@@ -147,7 +207,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case 'core/cover': {
-        console.log("COVER: ", block.attributes);
+        // console.log("COVER: ", block.attributes);
         return (
           <Cover
             key={block.id}
@@ -155,6 +215,8 @@ export const BlockRenderer = ({ blocks }) => {
             overlayColor={block.attributes.overlayColor}
             overlayOpacity={block.attributes.dimRatio}
             minHeight={block.attributes.minHeight}
+            marginTop={block.attributes.style?.spacing?.margin?.top}
+            marginBottom={block.attributes.style?.spacing?.margin?.bottom}
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Cover>
@@ -177,6 +239,8 @@ export const BlockRenderer = ({ blocks }) => {
             verticalAlignment={block.attributes.verticalAlignment}
             marginTop={block.attributes.style?.spacing?.margin?.top}
             marginBottom={block.attributes.style?.spacing?.margin?.bottom}
+            paddingTop={block.attributes.style?.spacing?.padding?.top}
+            paddingBottom={block.attributes.style?.spacing?.padding?.bottom}
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Columns>

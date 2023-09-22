@@ -1,0 +1,51 @@
+.apartmentsData {
+  @media screen and (max-width: 767px) {
+    max-width: 1220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 10px;
+  }
+}
+
+.title {
+    font-size: clamp(1.125rem, 0.898rem + 1.14vw, 1.75rem);
+    font-weight: 500;
+    color: #424242;
+    margin-bottom: 30px;
+
+    span {
+      color: #0170B9;
+    }
+}
+
+.dataItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dataItem {
+  margin-bottom: 20px;
+}
+
+.dataItemFlex {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.text {
+  color: #3a3a3a;
+  font-size: 14px;
+  line-height: 120%;
+
+  span {
+    color: #0170B9;
+  }
+}
+
+.textValue {
+  color: #3a3a3a;
+  font-size: 14px;
+  line-height: 120%;
+}

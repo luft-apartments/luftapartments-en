@@ -1,0 +1,35 @@
+.paramsBlock {
+  padding-top: clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem);
+  padding-bottom: clamp(1.875rem, 1.193rem + 3.41vw, 3.75rem);
+}
+
+.title {
+    font-size: clamp(1.125rem, 0.898rem + 1.14vw, 1.75rem);
+    font-weight: 500;
+    color: #424242;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.items {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.text {
+  color: #0170B9;
+  font-size: 14px;
+  line-height: 120%;
+
+  span {
+    color: #3a3a3a;
+  }
+}

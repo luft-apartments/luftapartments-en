@@ -7,3 +7,11 @@
   padding: 0 10px;
   margin: 0 auto;
 }
+
+/* for GallerySlider component */
+/* describe ImageGallery */
+.image-gallery {
+  max-width: 700px;
+}
+/* for GallerySlider component */
+/* describe ImageGallery */

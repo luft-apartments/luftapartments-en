@@ -8,7 +8,6 @@ export default async function Home() {
   if (!data) {
     notFound();
   }
-  console.log({ data });
   return <BlockRenderer blocks={data} />;
 }
 

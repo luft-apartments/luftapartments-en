@@ -18,18 +18,18 @@ export const getAlignImage = (align) => {
   return `${getAlignImageMap[align] || ""}`;
 };
 
-export const getMargin = (margin) => {
-  const marginMap = {
-    "var:preset|spacing|30": "mb-8",
-    "var:preset|spacing|40": "mb-10",
-    "var:preset|spacing|50": "mb-12",
-    "var:preset|spacing|60": "mb-14",
-    "var:preset|spacing|70": "mb-16",
-    "var:preset|spacing|80": "mb-20",
-  };
+// export const getMargin = (margin) => {
+//   const marginMap = {
+//     "var:preset|spacing|30": "mb-8",
+//     "var:preset|spacing|40": "mb-10",
+//     "var:preset|spacing|50": "mb-12",
+//     "var:preset|spacing|60": "mb-14",
+//     "var:preset|spacing|70": "mb-16",
+//     "var:preset|spacing|80": "mb-20",
+//   };
 
-  return `${marginMap[margin] || ""}`;
-};
+//   return `${marginMap[margin] || ""}`;
+// };
 
 export const getMarginTop = (marginTop) => {
   const getMarginTopMap = {
@@ -38,7 +38,7 @@ export const getMarginTop = (marginTop) => {
     "var:preset|spacing|50": "mb-12",
     "var:preset|spacing|60": "mb-14",
     "var:preset|spacing|70": "mb-16",
-    "var:preset|spacing|80": "mb-18",
+    "var:preset|spacing|80": "mb-20",
   };
 
   return `${getMarginTopMap[marginTop] || ""}`;
@@ -55,6 +55,32 @@ export const getMarginBottom = (marginBottom) => {
   };
 
   return `${getMarginBottomMap[marginBottom] || ""}`;
+}
+
+export const getPaddingTop = (paddingTop) => {
+  const getPaddingTopMap = {
+    "var:preset|spacing|30": "pt-8",
+    "var:preset|spacing|40": "pt-10",
+    "var:preset|spacing|50": "pt-12",
+    "var:preset|spacing|60": "pt-14",
+    "var:preset|spacing|70": "pt-16",
+    "var:preset|spacing|80": "pt-20",
+  };
+
+  return `${getPaddingTopMap[paddingTop] || ""}`;
+}
+
+export const getPaddingBottom = (paddingBottom) => {
+  const getPaddingBottomMap = {
+    "var:preset|spacing|30": "pb-8",
+    "var:preset|spacing|40": "pb-10",
+    "var:preset|spacing|50": "pb-12",
+    "var:preset|spacing|60": "pb-14",
+    "var:preset|spacing|70": "pb-16",
+    "var:preset|spacing|80": "pb-20",
+  };
+
+  return `${getPaddingBottomMap[paddingBottom] || ""}`;
 }
 
 export const getOverlayColor = (overlayColor) => {

@@ -43,7 +43,7 @@ export const getFooter = async () => {
     body: JSON.stringify(params),
   });
   const { data } = await response.json();
-  console.log(data)
+
   return {
     copyright: data.acfOptionsFooter.footer.copyright,
     footerLinksApartments: mapFooterLinksApartments(data.acfOptionsFooter.footer.footerLinksApartments),

@@ -1,4 +1,4 @@
-import { getAlignItems, getMargin } from "utils/layout";
+import { getAlignItems, getMarginTop, getMarginBottom, getPaddingTop, getPaddingBottom } from "utils/layout";
 
 export const Columns = ({
   isStackedOnMobile,
@@ -7,7 +7,9 @@ export const Columns = ({
   backgroundColor,
   verticalAlignment,
   marginTop,
-  marginBottom
+  marginBottom,
+  paddingTop,
+  paddingBottom
 }) => {
 
   const textColorStyle = textColor ? { color: textColor } : {};
@@ -18,7 +20,7 @@ export const Columns = ({
       // className="my-10"
       style={{ ...textColorStyle, ...backgroundColorStyle, }}
     >
-      <div className={`w-full mx-auto ${getMargin(marginTop)} ${getMargin(marginBottom)} ${getAlignItems(verticalAlignment)} ${isStackedOnMobile ? "flex flex-col justify-center md:flex md:flex-row" : "flex"}`}>{children}</div>
+      <div className={`w-full mx-auto ${getPaddingTop(paddingTop)} ${getPaddingBottom(paddingBottom)} ${getMarginTop(marginTop)} ${getMarginBottom(marginBottom)} ${getAlignItems(verticalAlignment)} ${isStackedOnMobile ? "flex flex-col justify-center md:flex md:flex-row" : "flex"}`}>{children}</div>
     </div>
   )
 }

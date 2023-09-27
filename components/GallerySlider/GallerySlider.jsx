@@ -17,7 +17,7 @@ export const GallerySlider = ({ slides }) => {
     <ImageGallery
       showPlayButton={false}
       showThumbnails={true}
-      thumbnailPosition="right"
+      // thumbnailPosition="right"
       items={images}
       className={styles.gallerySlider}
     />

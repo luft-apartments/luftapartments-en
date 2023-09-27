@@ -286,6 +286,8 @@
     flex-direction: column;
     background-color: #eeeeee;
     position: absolute;
+    // right: 110%;
+    // left: 0;
     left: 110%;
     right: 0;
     top: 70px;
@@ -297,6 +299,7 @@
   }
 
   .navVisible {
+    // right: 0;
     left: 0;
   }
 

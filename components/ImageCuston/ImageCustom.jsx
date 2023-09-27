@@ -22,6 +22,7 @@ export const ImageCustom = ({
             height={height}
             alt={alt}
             className={`mb-8 ${getAlignImage(align)}`}
+            quality={100}
           />
         </Link>
       ) : (
@@ -31,6 +32,7 @@ export const ImageCustom = ({
           height={height}
           alt={alt}
           className={getAlignImage(align)}
+          quality={100}
         />
       )}
     </>

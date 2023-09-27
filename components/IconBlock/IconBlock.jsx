@@ -4,12 +4,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import styles from './IconBlock.module.scss';
 
 // Импортируйте иконки Font Awesome, которые вы используете
-import { faHouseUser, faSquare, faBath, faTv, faWifi, faBed, faUtensils, faTrainSubway } from '@fortawesome/free-solid-svg-icons';
+import { faHouseUser, faSquare, faBath, faTv, faWifi, faBed, faUtensils, faTrainSubway, faCalendarCheck, faCalendarMinus, faChild, faUser, faIcons, faCloudMoon, faDog, faComments, faCarSide, faWineGlassAlt, faSmokingBan } from '@fortawesome/free-solid-svg-icons';
 
 // Добавьте иконки в библиотеку FontAwesome
-library.add(faHouseUser, faSquare, faBath, faTv, faWifi, faBed, faUtensils, faTrainSubway);
+library.add(faHouseUser, faSquare, faBath, faTv, faWifi, faBed, faUtensils, faTrainSubway, faCalendarCheck, faCalendarMinus, faChild, faUser, faIcons, faCloudMoon, faDog, faComments, faCarSide, faWineGlassAlt, faSmokingBan);
 
-export const IconBlock = ({ background, icon, text }) => {
+export const IconBlock = ({ background, icon, text, subtext }) => {
   return (
     <div
       className={styles.iconBlock}
@@ -20,6 +20,7 @@ export const IconBlock = ({ background, icon, text }) => {
       </div>
       <div className={styles.iconBlockText}>
         <p>{text}</p>
+        {subtext && <p className={styles.subtext}>{subtext}</p>}
       </div>
     </div>
   );

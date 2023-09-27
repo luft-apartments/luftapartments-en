@@ -1,4 +1,6 @@
 .apartmentsData {
+  padding-left: 40px;
+
   @media screen and (max-width: 767px) {
     max-width: 1220px;
     margin-left: auto;
@@ -14,6 +16,7 @@
     margin-bottom: 30px;
 
     span {
+      font-weight: 700;
       color: #0170B9;
     }
 }

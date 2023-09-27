@@ -83,6 +83,19 @@ export const getPaddingBottom = (paddingBottom) => {
   return `${getPaddingBottomMap[paddingBottom] || ""}`;
 }
 
+export const getGap = (gap) => {
+  const getGapMap = {
+    "var:preset|spacing|30": "gap-2",
+    "var:preset|spacing|40": "gap-4",
+    "var:preset|spacing|50": "gap-5",
+    "var:preset|spacing|60": "gap-6",
+    "var:preset|spacing|70": "gap-7",
+    "var:preset|spacing|80": "gap-8",
+  };
+
+  return `${getGapMap[gap] || ""}`;
+}
+
 export const getOverlayColor = (overlayColor) => {
   const getOverlayColorMap = {
     "base": "#ffffff",
@@ -114,4 +127,13 @@ export const getOverlayOpacity = (overlayOpacity) => {
   };
 
   return `${getOverlayOpacityMap[overlayOpacity] || ""}`;
+}
+
+export const getMaxWidth = (align) => {
+  const getMaxWidthMap = {
+    "wide": "max-w-[1220px] mx-auto px-2.5",
+    "full": "max-w-full mx-auto px-4",
+  };
+
+  return `${getMaxWidthMap[align] || ""}`;
 }

@@ -14,6 +14,11 @@ import { SliderReviews } from "components/SliderReviews";
 import { GallerySlider } from "components/GallerySlider";
 import { ApartmentsData } from "components/ApartmentsData";
 import { ParamsBlock } from "components/ParamsBlock";
+import { ContactForm } from "components/ContactForm";
+import { MediaText } from "components/MediaText";
+import { MediaBlock } from "components/MediaBlock";
+import { List } from "components/List";
+import { ListItem } from "components/ListItem";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -78,7 +83,7 @@ export const BlockRenderer = ({ blocks }) => {
   return blocks.map(block => {
     switch (block.name) {
       case "acf/googlemap": {
-        console.log("GOOGLE MAP: ", block.attributes.data);
+        // console.log("GOOGLE MAP: ", block.attributes.data);
         return (
           <Map
             key={block.id}
@@ -95,6 +100,7 @@ export const BlockRenderer = ({ blocks }) => {
             background={block.attributes.data.background_color}
             icon={block.attributes.data.icon}
             text={block.attributes.data.text}
+            subtext={block.attributes.data.subtext}
           />
         )
       }
@@ -152,7 +158,7 @@ export const BlockRenderer = ({ blocks }) => {
         )
       }
       case "acf/params": {
-        console.log("PARAMS: ", block.attributes);
+        // console.log("PARAMS: ", block.attributes);
         return (
           <ParamsBlock
             key={block.id}
@@ -164,6 +170,30 @@ export const BlockRenderer = ({ blocks }) => {
             internet={block.attributes.data.internet}
             parking={block.attributes.data.parking}
             wc={block.attributes.data.wc}
+          />
+        )
+      }
+      case "acf/contactform": {
+        // console.log("CONTACT FORM: ", block.attributes);
+        return (
+          <ContactForm
+            key={block.id}
+          />
+        )
+      }
+      case "acf/mediablock": {
+        // console.log("MEDIA BLOCK: ", block.attributes);
+        return (
+          <MediaBlock
+            key={block.id}
+            icon={block.attributes.data.icon}
+            title={block.attributes.data.title}
+            textStart={block.attributes.data.textstart}
+            phone={block.attributes.data.phone}
+            email={block.attributes.data.email}
+            textEnd={block.attributes.data.textend}
+            weekdays={block.attributes.data.weekdays}
+            weekends={block.attributes.data.weekends}
           />
         )
       }
@@ -186,6 +216,23 @@ export const BlockRenderer = ({ blocks }) => {
           />
         )
       }
+      // case "core/list": {
+      //   console.log("LIST: ", block.attributes);
+      //   return (
+      //     <List key={block.id}>
+      //       <BlockRenderer blocks={block.innerBlocks} />
+      //     </List>
+      //   )
+      // }
+      // case "core/list-item": {
+      //   console.log("LIST ITEM: ", block.attributes);
+      //   return (
+      //     <ListItem
+      //       key={block.id}
+      //       content={block.orighinalContent}
+      //     />
+      //   )
+      // }
       case "core/post-title":
       case "core/heading": {
         // console.log("HEADING: ", block.attributes);
@@ -195,6 +242,10 @@ export const BlockRenderer = ({ blocks }) => {
             level={block.attributes.level}
             content={block.attributes.content}
             textAlign={block.attributes.textAlign}
+            marginTop={block.attributes.style?.spacing?.margin?.top}
+            marginBottom={block.attributes.style?.spacing?.margin?.bottom}
+            paddingTop={block.attributes.style?.spacing?.padding?.top}
+            paddingBottom={block.attributes.style?.spacing?.padding?.bottom}
             textColor={
               theme[block.attributes.textColor] ||
               block.attributes.style?.color?.text
@@ -228,6 +279,7 @@ export const BlockRenderer = ({ blocks }) => {
           <Columns
             key={block.id}
             isStackedOnMobile={block.attributes.isStackedOnMobile}
+            align={block.attributes.align}
             textColor={
               theme[block.attributes.textColor] ||
               block.attributes.style?.color?.text
@@ -241,12 +293,14 @@ export const BlockRenderer = ({ blocks }) => {
             marginBottom={block.attributes.style?.spacing?.margin?.bottom}
             paddingTop={block.attributes.style?.spacing?.padding?.top}
             paddingBottom={block.attributes.style?.spacing?.padding?.bottom}
+            gap={block.attributes.style?.spacing?.blockGap?.left}
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Columns>
         )
       }
       case "core/column": {
+        // console.log("COLUMN:", block.attributes);
         return (
           <Column
             key={block.id}
@@ -276,6 +330,20 @@ export const BlockRenderer = ({ blocks }) => {
             align={block.attributes.align}
             href={block.attributes?.href}
           />
+        )
+      }
+      case "core/media-text": {
+        return (
+          <MediaText
+            key={block.id}
+            height={block.attributes.height}
+            mediaLink={block.attributes.mediaLink}
+            verticalAlignment={block.attributes.verticalAlignment}
+            mediaPosition={block.attributes.mediaPosition}
+            innerBlocks={block.innerBlocks}
+          >
+            <BlockRenderer blocks={block.innerBlocks} />
+          </MediaText>
         )
       }
       default: {

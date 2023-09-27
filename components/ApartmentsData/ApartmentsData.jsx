@@ -3,7 +3,6 @@ import styles from './ApartmentsData.module.scss'
 import { FaLocationArrow, FaDog } from "react-icons/fa6";
 
 export const ApartmentsData = ({ adress, area, cost, floor, pets, rooms }) => {
-  // console.log("APARTMENT DATA: ", adress, area, cost, floor, pets, rooms)
   return (
     <div className={styles.apartmentsData}>
       <h2 className={styles.title}><span>{cost}€</span> / monat</h2>

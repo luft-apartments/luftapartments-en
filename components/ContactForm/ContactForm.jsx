@@ -8,9 +8,10 @@ import styles from './ContactForm.module.scss';
 
 const initialValues = {
   name: '',
-  country: '',
   phone: '',
   email: '',
+  datestart: '',
+  dateend: '',
   message: '',
 };
 
@@ -28,9 +29,10 @@ export const ContactForm = () => {
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
-    country: false,
     phone: false,
     email: false,
+    datestart: false,
+    dateend: false,
     message: false,
   });
 

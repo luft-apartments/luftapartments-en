@@ -23,8 +23,10 @@ export const Map = ({ lat, lng }) => {
     zoomControl: true,
   }
 
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
+
   return (
-    <LoadScript googleMapsApiKey="AIzaSyAC29w2wNd-i_tQDXd3WxasXgRu9AVFSEs">
+    <LoadScript googleMapsApiKey={apiKey}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

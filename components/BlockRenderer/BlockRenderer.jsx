@@ -162,7 +162,7 @@ export const BlockRenderer = ({ blocks }) => {
       }
       case "acf/carouselblock": {
         const innerBlocks = objToArrayCarousel(block.attributes.data, "carousel");
-        console.log("CAROUSEL: ", innerBlocks);
+        // console.log("CAROUSEL: ", innerBlocks);
         return (
           <Carousel
             key={block.id}
@@ -374,7 +374,7 @@ export const BlockRenderer = ({ blocks }) => {
         )
       }
       default: {
-        console.log("UNKNOWN: ", block);
+        // console.log("UNKNOWN: ", block);
         return null;
       }
     }

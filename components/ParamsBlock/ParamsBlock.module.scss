@@ -15,21 +15,29 @@
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
-  max-width: 800px;
+  // max-width: 900px;
 }
 
 .item {
   display: flex;
   align-items: center;
   gap: 7px;
+  background-color: #0170B9;
+  border-radius: 3px;
+  padding: 8px 12px;
+
 }
 
 .text {
-  color: #0170B9;
+  color: #fff;
   font-size: 14px;
   line-height: 120%;
+  font-weight: 600;
 
   span {
-    color: #3a3a3a;
+    color: #fff;
+    font-size: 14px;
+    line-height: 120%;
+    font-weight: 500;
   }
 }

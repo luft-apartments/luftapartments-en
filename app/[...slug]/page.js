@@ -8,7 +8,7 @@ export default async function Page({ params }) {
   if (!data) {
     notFound();
   }
-  console.log({ data });
+  // console.log({ data });
   return <BlockRenderer blocks={data} />;
 }
 

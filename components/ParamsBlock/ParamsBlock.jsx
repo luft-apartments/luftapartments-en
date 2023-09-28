@@ -15,38 +15,38 @@ export const ParamsBlock = ({
   return (
     <div className={styles.paramsBlock}>
       <div className="container">
-        <h2 className={styles.title}>Immobilienparameter</h2>
+        {/* <h2 className={styles.title}>Immobilienparameter</h2> */}
         <div className={styles.items}>
           <div className={styles.item}>
-            <MdBalcony style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdBalcony style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Balkon: <span>{balcony}</span></p>
           </div>
           <div className={styles.item}>
-            <MdOutlineBed style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdOutlineBed style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Schlafzimmer: <span>{bedrooms}</span></p>
           </div>
           <div className={styles.item}>
-            <MdOutlineElevator style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdOutlineElevator style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Aufzug: <span>{elevator}</span></p>
           </div>
           <div className={styles.item}>
-            <MdOutlineDesk style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Ausstattung: <span>{equipment}</span></p>
           </div>
           <div className={styles.item}>
-            <MdOutlineDesk style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Möbel: <span>{furniture}</span></p>
           </div>
           <div className={styles.item}>
-            <MdOutlineSignalWifi4Bar style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdOutlineSignalWifi4Bar style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Internet: <span>{internet}</span></p>
           </div>
           <div className={styles.item}>
-            <MdDirectionsCar style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdDirectionsCar style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Parkplatz: <span>{parking}</span></p>
           </div>
           <div className={styles.item}>
-            <MdWc style={{ color: '#1e7ca4', fontSize: '20px' }} />
+            <MdWc style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>WC: <span>{wc}</span></p>
           </div>
         </div>

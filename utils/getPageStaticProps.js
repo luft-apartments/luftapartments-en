@@ -98,6 +98,23 @@ export const getPageStaticProps = async (context) => {
             }
           }
         }
+        apartmentsPages: pages(where: { parent: { node: { slug: "apartments" } } }) {
+          nodes {
+            id
+            title
+            uri
+            blocks
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            seo {
+              title
+              metaDesc
+            }
+          }
+        }
       }
     `,
     variables: {
@@ -106,6 +123,8 @@ export const getPageStaticProps = async (context) => {
   });
 
   const nodeByUri = data.nodeByUri || null;
+  // Extract the apartmentsPages data
+  const apartmentsPages = data.apartmentsPages.nodes;
 
   const blocks = cleanAndTransformBlocks(data.nodeByUri?.blocks || []);
   const isHomePage = uri === "/";
@@ -128,6 +147,7 @@ export const getPageStaticProps = async (context) => {
       logo: data.acfOptionsMainMenu.mainMenu.logo.sourceUrl,
       mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
       featuredImage: data.nodeByUri?.featuredImage?.node?.sourceUrl || data.nodeByUri?.featuredImage?.sourceUrl || null,
+      apartmentsPages,
     },
   };
 };

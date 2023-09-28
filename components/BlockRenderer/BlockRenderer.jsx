@@ -17,8 +17,7 @@ import { ParamsBlock } from "components/ParamsBlock";
 import { ContactForm } from "components/ContactForm";
 import { MediaText } from "components/MediaText";
 import { MediaBlock } from "components/MediaBlock";
-import { List } from "components/List";
-import { ListItem } from "components/ListItem";
+import { Carousel } from "components/Carousel";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -73,6 +72,24 @@ export const BlockRenderer = ({ blocks }) => {
       const slide = {
         image: data[`gallery_${slideIndex}_slide_image`],
         description: data[`gallery_${slideIndex}_slide_description`],
+      };
+      arr.push(slide);
+    }
+
+    return arr;
+  }
+
+  const objToArrayCarousel = (data) => {
+    const arr = [];
+    const slideCount = data.carousel;
+    // console.log("SLIDE COUNT: ", slideCount)
+
+    for (let i = 0; i < slideCount; i++) {
+      const slideIndex = i.toString();
+      const slide = {
+        image: data[`carousel_${slideIndex}_slide_image`],
+        name: data[`carousel_${slideIndex}_slide_name`],
+        distance: data[`carousel_${slideIndex}_slide_distance`],
       };
       arr.push(slide);
     }
@@ -138,6 +155,16 @@ export const BlockRenderer = ({ blocks }) => {
         // console.log("GALLERY: ", innerBlocks)
         return (
           <GallerySlider
+            key={block.id}
+            slides={innerBlocks}
+          />
+        )
+      }
+      case "acf/carouselblock": {
+        const innerBlocks = objToArrayCarousel(block.attributes.data, "carousel");
+        console.log("CAROUSEL: ", innerBlocks);
+        return (
+          <Carousel
             key={block.id}
             slides={innerBlocks}
           />

@@ -29,18 +29,20 @@ export const Slider = ({ slides }) => {
           <SwiperSlide key={index}>
             <div className={styles.slide}>
               <div className={styles.imageContainer}>
-                <Image
-                  className={styles.slideImage}
-                  src={slide.image}
-                  alt={slide.title}
-                  width={1920} height={1080}
-                />
+                {slide.image && (
+                  <Image
+                    className={styles.slideImage}
+                    src={slide.image}
+                    alt={slide.title}
+                    width={1920} height={1080}
+                  />
+                )}
               </div>
               <div className={styles.slideContent}>
                 <div className={styles.slideSubcontent}>
                   <h2 className={styles.slideTitle}>{slide.title}</h2>
                   <p className={styles.slideText}>{slide.text}</p>
-                  <Link className='btn' href={slide.link.url}>{slide.link_text}</Link>
+                  <Link className={styles.linkBtn} href={slide.link.url}>{slide.link_text}</Link>
                 </div>
               </div>
             </div>
@@ -49,12 +51,16 @@ export const Slider = ({ slides }) => {
         <div className={styles.buttons}>
           <div className='buttonPrev'>
             <button className={`${styles.sliderButton} ${styles.buttonLeft}`}>
-              <Image src='/img/arrow-left.png' alt='arrow' width={30} height={30} />
+              <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                <path d="M6 1L1 6L6 11" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           </div>
           <div className='buttonNext'>
             <button className={`${styles.sliderButton} ${styles.buttonRight}`}>
-              <Image src='/img/arrow-right.png' alt='arrow' width={30} height={30} />
+              <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
+                <path d="M1 11L6 6L1 1" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           </div>
         </div>

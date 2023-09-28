@@ -1,20 +1,22 @@
 import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
 
-export const getPage = async (uri) => {
+export const getApartments = async () => {
   const params = {
     query: `
-      query PageQuery($uri: String!) {
-        nodeByUri(uri: $uri) {
-          __typename
-          ... on Page {
-            blocks
-          }
-          ... on Post {
-            date
-            blocks
-            categories {
-              nodes {
-                name
+      query ApartmetsQuery() {
+        pageBy(uri: "apartments") {
+          children {
+            nodes {
+              uri
+              slug
+              ... on Page {
+                id
+                title
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
               }
             }
           }

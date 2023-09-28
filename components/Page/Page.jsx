@@ -6,6 +6,7 @@ import { BlockRenderer } from "components/BlockRenderer";
 // import { MainMenu } from "components/MainMenu";
 import Head from "next/head";
 import { MainMenu } from "components/MainMenu";
+import NotFound from "app/not-found";
 
 export const Page = (props) => {
   console.log("PAGE PROPS: ", props);
@@ -16,7 +17,7 @@ export const Page = (props) => {
 
   if (props.error) {
     return (
-      <NotFoundPage />
+      <NotFound />
     );
   }
 

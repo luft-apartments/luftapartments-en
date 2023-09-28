@@ -149,5 +149,6 @@ export const getPageStaticProps = async (context) => {
       featuredImage: data.nodeByUri?.featuredImage?.node?.sourceUrl || data.nodeByUri?.featuredImage?.sourceUrl || null,
       apartmentsPages,
     },
+    revalidate: 60
   };
 };

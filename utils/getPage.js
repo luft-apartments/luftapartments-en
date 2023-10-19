@@ -27,6 +27,7 @@ export const getPage = async (uri) => {
   };
 
   const response = await fetch(process.env.WP_GRAPHQL_URL, {
+    next: { revalidate: 60 },
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),

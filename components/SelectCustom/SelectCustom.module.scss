@@ -1,0 +1,69 @@
+/* SelectCustom.module.scss */
+
+.selectData {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  /* Add your styles for the SelectCustom container here */
+}
+
+.selectData .input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  outline: none;
+  padding: 0 20px;
+  border: 1px solid #0170B9;
+  border-radius: 7px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    border: 1px solid #ff7300;
+  }
+}
+
+.selectData .input:focus ~ .underline:before,
+.selectData .input:valid ~ .underline:before {
+  transform: scale(1);
+}
+
+/* Add more styles as needed */
+
+/* Style the label for the SelectCustom */
+.selectData .label {
+  position: absolute;
+  pointer-events: none;
+  bottom: 8px;
+  left: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  color: #4B4F58;
+}
+
+.selectData .label.focused {
+  transform: translateY(-22px);
+  font-size: 10px;
+  background-color: #fff;
+}
+
+/* Style the underline for the SelectCustom */
+.selectData .underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+
+.selectData .underline:before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+/* Add more styles as needed */

@@ -3,13 +3,20 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ReactDOM from 'react-dom';
-
 import styles from './ContactForm.module.scss';
+
+const apartmentsOptions = [
+  { value: '1b', label: 'Apartment 1B' },
+  { value: '2b', label: 'Apartment 2B' },
+  { value: '3b', label: 'Apartment 3B' },
+];
 
 const initialValues = {
   name: '',
+  surname: '',
   phone: '',
   email: '',
+  apartments: '',
   datestart: '',
   dateend: '',
   message: '',
@@ -17,9 +24,11 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
+  surname: Yup.string().required('Required'),
   country: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
+  apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
 
@@ -29,6 +38,7 @@ export const ContactForm = () => {
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
+    surname: false,
     phone: false,
     email: false,
     datestart: false,
@@ -98,24 +108,45 @@ export const ContactForm = () => {
     <div className={styles.formWrapper}>
       <Formik initialValues={initialValues} validationSchema={validationSchema} validateOnBlur onSubmit={onSubmit}>
         <Form className={styles.form}>
-          <div
-            className={styles.inputData}
-          >
-            <Field
-              className={styles.input}
-              type="text"
-              id="name"
-              name="name"
-              onFocus={() => setFieldStates({ ...fieldStates, name: true })}
-              onBlur={(e) => handleFieldChange('name', e.target.value)}
-            />
-            <label
-              htmlFor="name"
-              className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
+          <div className={styles.inputWrapper}>
+            <div
+              className={styles.inputData}
             >
-              Your full name
-            </label>
-            <ErrorMessage name="name" component="div" className={styles.errorMessage} />
+              <Field
+                className={styles.input}
+                type="text"
+                id="name"
+                name="name"
+                onFocus={() => setFieldStates({ ...fieldStates, name: true })}
+                onBlur={(e) => handleFieldChange('name', e.target.value)}
+              />
+              <label
+                htmlFor="name"
+                className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
+              >
+                Name
+              </label>
+              <ErrorMessage name="name" component="div" className={styles.errorMessage} />
+            </div>
+            <div
+              className={styles.inputData}
+            >
+              <Field
+                className={styles.input}
+                type="text"
+                id="surname"
+                name="surname"
+                onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
+                onBlur={(e) => handleFieldChange('surname', e.target.value)}
+              />
+              <label
+                htmlFor="surname"
+                className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
+              >
+                Nachname
+              </label>
+              <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
+            </div>
           </div>
           <div className={styles.inputWrapper}>
             <div
@@ -133,7 +164,7 @@ export const ContactForm = () => {
                 htmlFor="phone"
                 className={`${styles.label} ${fieldStates.phone || initialValues.phone ? styles.focused : ''}`}
               >
-                Phone
+                Telefonnummer
               </label>
               <ErrorMessage name="phone" component="div" className={styles.errorMessage} />
             </div>
@@ -158,7 +189,33 @@ export const ContactForm = () => {
               <ErrorMessage name="email" component="div" className={styles.errorMessage} />
             </div>
           </div>
-          <div className={styles.inputWrapper}>
+          <div className={styles.inputData}>
+            <div className={styles.selectWrapper}>
+              <Field
+                as="select"
+                id="apartments"
+                name="apartments"
+                className={`${styles.input} ${styles.select}`}
+                onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
+                onBlur={(e) => handleFieldChange('apartments', e.target.value)}
+              >
+                <option value="" disabled> </option>
+                {apartmentsOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Field>
+              <label
+                htmlFor="apartments"
+                className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''} ${styles.selectLabel}`}
+              >
+                Wunsch Apartment
+              </label>
+            </div>
+            <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
+          </div>
+          {/* <div className={styles.inputWrapper}>
             <div
               className={styles.inputData}
             >
@@ -198,7 +255,7 @@ export const ContactForm = () => {
               </label>
               <ErrorMessage name="dateend" component="div" className={styles.errorMessage} />
             </div>
-          </div>
+          </div> */}
           <div
             className={`${styles.inputData} ${styles.textarea}`}
           >
@@ -213,7 +270,7 @@ export const ContactForm = () => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Message
+              Sonderwunsch
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>

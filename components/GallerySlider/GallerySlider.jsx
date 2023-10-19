@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/css/image-gallery.css';
 import styles from './GallerySlider.module.scss';
+import Image from 'next/image';
 
 
 export const GallerySlider = ({ slides }) => {

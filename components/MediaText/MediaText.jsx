@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import Image from "next/image";
-
 import { getAlignItems } from "utils/layout";
 import { getMediaPosition } from "utils/mediaPosition";
 
@@ -20,7 +18,7 @@ export const MediaText = ({
         <Image
           src={mediaLink}
           width={1000}
-          height={500}
+          height={1000}
           alt={mediaLink}
         />
       </div>

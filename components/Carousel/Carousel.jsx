@@ -1,3 +1,4 @@
+'use client';
 import React from 'react'
 import styles from './Carousel.module.scss';
 import Slider from 'react-infinite-logo-slider'

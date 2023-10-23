@@ -18,6 +18,7 @@ import { ContactForm } from "components/ContactForm";
 import { MediaText } from "components/MediaText";
 import { MediaBlock } from "components/MediaBlock";
 import { Carousel } from "components/Carousel";
+import { AllApartmentsBlock } from "components/AllApartmentsBlock";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -99,6 +100,14 @@ export const BlockRenderer = ({ blocks }) => {
 
   return blocks.map(block => {
     switch (block.name) {
+      case "acf/allapartmentsblock": {
+        // console.log("APARTMENTS BLOCK: ", block.attributes);
+        return (
+          <AllApartmentsBlock
+            key={block.id}
+          />
+        )
+      }
       case "acf/googlemap": {
         // console.log("GOOGLE MAP: ", block.attributes.data);
         return (
@@ -374,7 +383,7 @@ export const BlockRenderer = ({ blocks }) => {
         )
       }
       default: {
-        // console.log("UNKNOWN: ", block);
+        console.log("UNKNOWN: ", block);
         return null;
       }
     }

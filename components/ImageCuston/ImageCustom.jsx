@@ -10,7 +10,7 @@ export const ImageCustom = ({
   align,
   href
 }) => {
-  console.log("HREF: ", href)
+  // console.log("HREF: ", href)
 
   return (
     <>

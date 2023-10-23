@@ -18,7 +18,7 @@ export const Carousel = ({ slides }) => {
       >
         {slides.map((slide, index) => (
           <Slider.Slide
-            key={slide.id}
+            key={slide.name}
             className={styles.slide}
           >
             <div className={styles.slideContent}>

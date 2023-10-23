@@ -1,9 +1,7 @@
-import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
-
-export const getApartments = async () => {
+export const getApartmentsPages = async () => {
   const params = {
     query: `
-      query ApartmetsQuery() {
+      query ApartmentsQuery {
         pageBy(uri: "apartments") {
           children {
             nodes {
@@ -23,9 +21,6 @@ export const getApartments = async () => {
         }
       }
     `,
-    variables: {
-      uri,
-    },
   };
 
   const response = await fetch(process.env.WP_GRAPHQL_URL, {
@@ -33,13 +28,8 @@ export const getApartments = async () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),
   });
-  const { data } = await response.json();
-  const nodeByUri = data.nodeByUri || null;
-  if (!data.nodeByUri) {
-    return null;
-  }
-  const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
-  // const blocks = cleanAndTransformBlocks(data.nodeByUri?.blocks || []);
 
-  return blocks;
+  const { data } = await response.json();
+  const apartments = data.pageBy.children.nodes;
+  return apartments;
 }

@@ -3,6 +3,7 @@ import { Raleway, Inter } from 'next/font/google';
 import '../styles/globals.css';
 import { MainMenu } from 'components/MainMenu';
 import { Footer } from 'components/Footer';
+import CookieConsent from '/components/CookieConsent/CookieConsent'
 import { getMenu } from 'utils/getMenu';
 import { getFooter } from 'utils/getFooter';
 
@@ -39,6 +40,7 @@ export default async function RootLayout({ children }) {
           footerLinksPages={footerData.footerLinksPages}
           footerLogo={footerData.footerLogo}
         />
+        <CookieConsent />
       </body>
     </html>
   );

@@ -1,0 +1,29 @@
+.cookieBanner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #1e7ca4;
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 10000;
+
+  .buttonCookies {
+  background-color: #424242;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #ff7300;
+    }
+  }
+}

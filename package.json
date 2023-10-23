@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postbuild": "npm run sitemap",
-    "sitemap": "next-sitemap"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.6.8",

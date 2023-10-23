@@ -170,6 +170,14 @@
   }
 }
 
+.navLinkActive {
+  color: #ff7300;
+
+  &::after {
+    width: 100%;
+  }
+}
+
 .navLinkScrolled {
   align-items: baseline;
   padding-top: 10px;

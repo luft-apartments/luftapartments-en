@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const AllApartmentsBlockSlider = ({ data }) => {
-  console.log(data)
+  // console.log(data)
   return (
     <div className={styles.AllApartmentsBlockSlider}>
       <div className="container">

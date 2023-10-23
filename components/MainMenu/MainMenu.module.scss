@@ -163,7 +163,11 @@
         width: 100%;
       }
     }
-}
+  }
+
+  @media (max-width: 896px) {
+    text-align: center;
+  }
 
   @media (max-width: 768px) {
     font-size: 22px;

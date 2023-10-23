@@ -33,12 +33,12 @@ export const getAlignImage = (align) => {
 
 export const getMarginTop = (marginTop) => {
   const getMarginTopMap = {
-    "var:preset|spacing|30": "mb-8",
-    "var:preset|spacing|40": "mb-10",
-    "var:preset|spacing|50": "mb-12",
-    "var:preset|spacing|60": "mb-14",
-    "var:preset|spacing|70": "mb-16",
-    "var:preset|spacing|80": "mb-20",
+    "var:preset|spacing|30": "mt-4",
+    "var:preset|spacing|40": "mt-8",
+    "var:preset|spacing|50": "mt-12",
+    "var:preset|spacing|60": "mt-14",
+    "var:preset|spacing|70": "mt-16",
+    "var:preset|spacing|80": "mt-20",
   };
 
   return `${getMarginTopMap[marginTop] || ""}`;
@@ -46,8 +46,8 @@ export const getMarginTop = (marginTop) => {
 
 export const getMarginBottom = (marginBottom) => {
   const getMarginBottomMap = {
-    "var:preset|spacing|30": "mb-8",
-    "var:preset|spacing|40": "mb-10",
+    "var:preset|spacing|30": "mb-4",
+    "var:preset|spacing|40": "mb-8",
     "var:preset|spacing|50": "mb-12",
     "var:preset|spacing|60": "mb-14",
     "var:preset|spacing|70": "mb-16",
@@ -83,14 +83,41 @@ export const getPaddingBottom = (paddingBottom) => {
   return `${getPaddingBottomMap[paddingBottom] || ""}`;
 }
 
+export const getPaddingLeft = (paddingLeft) => {
+  const getPaddingLeftMap = {
+    "var:preset|spacing|30": "pl-0 md:pl-8",
+    "var:preset|spacing|40": "pl-0 md:pl-10",
+    "var:preset|spacing|50": "pl-0 md:pl-12",
+    "var:preset|spacing|60": "pl-0 md:pl-14",
+    "var:preset|spacing|70": "pl-0 md:pl-16",
+    "var:preset|spacing|80": "pl-0 md:pl-20",
+  };
+
+  return `${getPaddingLeftMap[paddingLeft] || ""}`;
+}
+
+export const getPaddingRight = (paddingRight) => {
+  const getPaddingRightMap = {
+    "var:preset|spacing|30": "pr-0 md:pr-8",
+    "var:preset|spacing|40": "pr-0 md:pr-10",
+    "var:preset|spacing|50": "pr-0 md:pr-12",
+    "var:preset|spacing|60": "pr-0 md:pr-14",
+    "var:preset|spacing|70": "pr-0 md:pr-16",
+    "var:preset|spacing|80": "pr-0 md:pr-20",
+  };
+
+  return `${getPaddingRightMap[paddingRight] || ""}`;
+}
+
+
 export const getGap = (gap) => {
   const getGapMap = {
-    "var:preset|spacing|30": "gap-2",
-    "var:preset|spacing|40": "gap-4",
-    "var:preset|spacing|50": "gap-5",
-    "var:preset|spacing|60": "gap-6",
-    "var:preset|spacing|70": "gap-7",
-    "var:preset|spacing|80": "gap-8",
+    "var:preset|spacing|30": "gap-4",
+    "var:preset|spacing|40": "gap-6",
+    "var:preset|spacing|50": "gap-8",
+    "var:preset|spacing|60": "gap-10",
+    "var:preset|spacing|70": "gap-12",
+    "var:preset|spacing|80": "gap-14",
   };
 
   return `${getGapMap[gap] || ""}`;

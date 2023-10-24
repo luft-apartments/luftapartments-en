@@ -1,49 +1,36 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 import styles from './ContactForm.module.scss';
-
-const apartmentsOptions = [
-  { value: '2a', label: 'Apartment 2A' },
-  { value: '3a', label: 'Apartment 3A' },
-  { value: '1b', label: 'Apartment 1B' },
-  { value: '2b', label: 'Apartment 2B' },
-  { value: '3b', label: 'Apartment 3B' },
-];
 
 const initialValues = {
   name: '',
-  surname: '',
   phone: '',
   email: '',
-  apartments: '',
-  datestart: '',
-  dateend: '',
+  subject: '',
   message: '',
 };
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
-  surname: Yup.string().required('Required'),
-  country: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  apartments: Yup.string().required('Required'),
+  subject: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
 
-export const ContactForm = () => {
+export const ContactForm = ({ onSubmitSuccess }) => {
+
+  const [values, setValues] = useState(initialValues);
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
-    surname: false,
     phone: false,
     email: false,
-    datestart: false,
-    dateend: false,
+    subject: false,
     message: false,
   });
 
@@ -58,18 +45,23 @@ export const ContactForm = () => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    console.log('Форма отправлена');
     try {
-      await axios.post('../../pages/api/contact', values); // Отправляем данные формы на сервер
+      await axios.post('/api/contact', values); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');
       resetForm(); // Сбрасываем значения полей формы к исходным значениям
+      setValues(initialValues); // Сбрасываем значения полей формы в локальном состоянии
       setIsMessageSent(true);
       setIsMessageVisible(true);
 
+      // Call the onSubmitSuccess callback after successful form submission
+      if (isMessageSent) {
+        onSubmitSuccess();
+      }
+
       setTimeout(() => {
         setIsMessageVisible(false);
-      }, 5000); // Скрыть всплывающее окно через 5 секунд
+      }, 5000); // Hide the message popup after 5 seconds
     } catch (error) {
       console.error('Ошибка при отправке формы:', error);
       // Здесь вы можете добавить код для обработки ошибки отправки, например, вывод сообщения пользователю
@@ -77,20 +69,22 @@ export const ContactForm = () => {
   };
 
   // Создаем портал для всплывающего окна
-  const MessagePopup = () => {
+  const MessagePopup = ({ isOpen }) => {
     if (!isMessageVisible) return null;
+    // if (!isOpen) return null;
 
     return ReactDOM.createPortal(
       <div className={styles.popupContainer}>
         <div className={styles.messagePopup}>
           <div className={styles.messageContent}>
             <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 20 20" fill="none">
-              <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#001A72" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#001A72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div className={styles.messageTextWrapper}>
-              <h3 className={styles.messageTitle}>Спасибо!</h3>
-              <p className={styles.messageText}>Я получил ваше сообщение и свяжусь с вами в ближайшее время.</p>
+              <h3 className={styles.messageTitle}>Thank you!</h3>
+              <p className={styles.messageText}>I received your message and will contact you soon.</p>
             </div>
+            {/* <button onClick={closeMessagePopup}>Close</button> */}
           </div>
         </div>
       </div>,
@@ -99,52 +93,36 @@ export const ContactForm = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+    <div>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} validateOnBlur onSubmit={onSubmit}>
         <Form className={styles.form}>
-          <div className={styles.inputWrapper}>
-            <div
-              className={styles.inputData}
+          <div
+            className={styles.inputData}
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <Field
+              className={styles.input}
+              type="text"
+              id="name"
+              name="name"
+              onFocus={() => setFieldStates({ ...fieldStates, name: true })}
+              onBlur={(e) => handleFieldChange('name', e.target.value)}
+            />
+            <label
+              htmlFor="name"
+              className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              <Field
-                className={styles.input}
-                type="text"
-                id="name"
-                name="name"
-                onFocus={() => setFieldStates({ ...fieldStates, name: true })}
-                onBlur={(e) => handleFieldChange('name', e.target.value)}
-              />
-              <label
-                htmlFor="name"
-                className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
-              >
-                Name
-              </label>
-              <ErrorMessage name="name" component="div" className={styles.errorMessage} />
-            </div>
-            <div
-              className={styles.inputData}
-            >
-              <Field
-                className={styles.input}
-                type="text"
-                id="surname"
-                name="surname"
-                onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
-                onBlur={(e) => handleFieldChange('surname', e.target.value)}
-              />
-              <label
-                htmlFor="surname"
-                className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
-              >
-                Nachname
-              </label>
-              <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
-            </div>
+              Name
+            </label>
+            <ErrorMessage name="name" component="div" className={styles.errorMessage} />
           </div>
+
           <div className={styles.inputWrapper}>
             <div
               className={styles.inputData}
+              data-aos="fade-up"
+              data-aos-duration="1200"
             >
               <Field
                 className={styles.input}
@@ -158,13 +136,15 @@ export const ContactForm = () => {
                 htmlFor="phone"
                 className={`${styles.label} ${fieldStates.phone || initialValues.phone ? styles.focused : ''}`}
               >
-                Telefonnummer
+                Phone
               </label>
               <ErrorMessage name="phone" component="div" className={styles.errorMessage} />
             </div>
 
             <div
               className={styles.inputData}
+              data-aos="fade-up"
+              data-aos-duration="1400"
             >
               <Field
                 className={styles.input}
@@ -183,34 +163,33 @@ export const ContactForm = () => {
               <ErrorMessage name="email" component="div" className={styles.errorMessage} />
             </div>
           </div>
-          <div className={styles.inputData}>
-            <div className={styles.selectWrapper}>
-              <Field
-                as="select"
-                id="apartments"
-                name="apartments"
-                className={`${styles.input} ${styles.select}`}
-                onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
-                onBlur={(e) => handleFieldChange('apartments', e.target.value)}
-              >
-                <option value="" disabled> </option>
-                {apartmentsOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Field>
-              <label
-                htmlFor="apartments"
-                className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''} ${styles.selectLabel}`}
-              >
-                Wunsch Apartment
-              </label>
-            </div>
-            <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
+
+          <div
+            className={styles.inputData}
+            data-aos="fade-up"
+            data-aos-duration="1800"
+          >
+            <Field
+              className={styles.input}
+              type="text"
+              id="subject"
+              name="subject"
+              onFocus={() => setFieldStates({ ...fieldStates, subject: true })}
+              onBlur={(e) => handleFieldChange('subject', e.target.value)}
+            />
+            <label
+              htmlFor="subject"
+              className={`${styles.label} ${fieldStates.subject || initialValues.subject ? styles.focused : ''}`}
+            >
+              Subject
+            </label>
+            <ErrorMessage name="subject" component="div" className={styles.errorMessage} />
           </div>
+
           <div
             className={`${styles.inputData} ${styles.textarea}`}
+            data-aos="fade-up"
+            data-aos-duration="2000"
           >
             <Field
               as="textarea"
@@ -223,7 +202,7 @@ export const ContactForm = () => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Sonderwunsch
+              Message
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>
@@ -231,13 +210,13 @@ export const ContactForm = () => {
           <div className={styles.buttonBlock}>
             <button
               className={styles.button}
-              type="submit"
             >
               Send
             </button>
           </div>
         </Form>
       </Formik>
+      <MessagePopup isOpen={isMessageSent} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { Cover } from "components/Cover";

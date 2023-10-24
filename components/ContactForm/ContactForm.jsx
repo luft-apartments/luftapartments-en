@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import ReactDOM from 'react-dom';
 import styles from './ContactForm.module.scss';
 
 const apartmentsOptions = [
+  { value: '2a', label: 'Apartment 2A' },
+  { value: '3a', label: 'Apartment 3A' },
   { value: '1b', label: 'Apartment 1B' },
   { value: '2b', label: 'Apartment 2B' },
   { value: '3b', label: 'Apartment 3B' },
@@ -34,8 +37,6 @@ const validationSchema = Yup.object({
 
 export const ContactForm = () => {
 
-  const [values, setValues] = useState(initialValues);
-
   const [fieldStates, setFieldStates] = useState({
     name: false,
     surname: false,
@@ -57,23 +58,18 @@ export const ContactForm = () => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
+    console.log('Форма отправлена');
     try {
       await axios.post('/api/contact', values); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');
       resetForm(); // Сбрасываем значения полей формы к исходным значениям
-      setValues(initialValues); // Сбрасываем значения полей формы в локальном состоянии
       setIsMessageSent(true);
       setIsMessageVisible(true);
 
-      // Call the onSubmitSuccess callback after successful form submission
-      if (isMessageSent) {
-        onSubmitSuccess();
-      }
-
       setTimeout(() => {
         setIsMessageVisible(false);
-      }, 5000); // Hide the message popup after 5 seconds
+      }, 5000); // Скрыть всплывающее окно через 5 секунд
     } catch (error) {
       console.error('Ошибка при отправке формы:', error);
       // Здесь вы можете добавить код для обработки ошибки отправки, например, вывод сообщения пользователю
@@ -81,22 +77,20 @@ export const ContactForm = () => {
   };
 
   // Создаем портал для всплывающего окна
-  const MessagePopup = ({ isOpen }) => {
+  const MessagePopup = () => {
     if (!isMessageVisible) return null;
-    // if (!isOpen) return null;
 
     return ReactDOM.createPortal(
       <div className={styles.popupContainer}>
         <div className={styles.messagePopup}>
           <div className={styles.messageContent}>
             <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 20 20" fill="none">
-              <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#001A72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#001A72" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <div className={styles.messageTextWrapper}>
-              <h3 className={styles.messageTitle}>Thank you!</h3>
-              <p className={styles.messageText}>I received your message and will contact you soon.</p>
+              <h3 className={styles.messageTitle}>Спасибо!</h3>
+              <p className={styles.messageText}>Я получил ваше сообщение и свяжусь с вами в ближайшее время.</p>
             </div>
-            {/* <button onClick={closeMessagePopup}>Close</button> */}
           </div>
         </div>
       </div>,
@@ -106,7 +100,7 @@ export const ContactForm = () => {
 
   return (
     <div className={styles.formWrapper}>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} validateOnBlur onSubmit={onSubmit}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         <Form className={styles.form}>
           <div className={styles.inputWrapper}>
             <div
@@ -215,47 +209,6 @@ export const ContactForm = () => {
             </div>
             <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
           </div>
-          {/* <div className={styles.inputWrapper}>
-            <div
-              className={styles.inputData}
-            >
-              <Field
-                className={styles.input}
-                type="date"
-                id="datestart"
-                name="datestart"
-                onFocus={() => setFieldStates({ ...fieldStates, datestart: true })}
-                onBlur={(e) => handleFieldChange('datestart', e.target.value)}
-              />
-              <label
-                htmlFor="datestart"
-                className={`${styles.dateLabel} ${fieldStates.datestart || initialValues.datestart ? styles.focused : ''}`}
-              >
-                Arrival date
-              </label>
-              <ErrorMessage name="datestart" component="div" className={styles.errorMessage} />
-            </div>
-
-            <div
-              className={styles.inputData}
-            >
-              <Field
-                className={styles.input}
-                type="date"
-                id="dateend"
-                name="dateend"
-                onFocus={() => setFieldStates({ ...fieldStates, dateend: true })}
-                onBlur={(e) => handleFieldChange('dateend', e.target.value)}
-              />
-              <label
-                htmlFor="dateend"
-                className={`${styles.dateLabel} ${fieldStates.dateend || initialValues.dateend ? styles.focused : ''}`}
-              >
-                Departure date
-              </label>
-              <ErrorMessage name="dateend" component="div" className={styles.errorMessage} />
-            </div>
-          </div> */}
           <div
             className={`${styles.inputData} ${styles.textarea}`}
           >

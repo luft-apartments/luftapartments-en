@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { Cover } from "components/Cover";
@@ -19,6 +19,7 @@ import { MediaText } from "components/MediaText";
 import { MediaBlock } from "components/MediaBlock";
 import { Carousel } from "components/Carousel";
 import { AllApartmentsBlock } from "components/AllApartmentsBlock";
+import { GridBlock } from "../GridBlock/GridBlock";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -100,6 +101,16 @@ export const BlockRenderer = ({ blocks }) => {
 
   return blocks.map(block => {
     switch (block.name) {
+      case "acf/gridblock": {
+        // console.log("GRID BLOCK: ", block.attributes);
+        return (
+          <GridBlock
+            key={block.id}
+          >
+            <BlockRenderer blocks={block.innerBlocks} />
+          </GridBlock>
+        )
+      }
       case "acf/allapartmentsblock": {
         // console.log("APARTMENTS BLOCK: ", block.attributes);
         return (

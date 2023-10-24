@@ -31,10 +31,10 @@ export const MediaBlock = ({
           <h3 className={styles.title}>{title}</h3>
           <div className={styles.text}>
             <p className={styles.textString}>
-              <span>{textStart}&nbsp;</span>
-              <span>{phone && <Link href={`tel:${phoneReplaced}`} className={styles.phone}>{phone}</Link>}</span>
-              <span>{email && <Link href={`mailto:${email}`} className={styles.email}>{email}</Link>}</span>
-              <span>&nbsp;{textEnd}</span>
+              <span>{textStart} </span>
+              {phone && <span><Link href={`tel:${phoneReplaced}`} className={styles.phone}>{phone} </Link></span>}
+              {email && <span><Link href={`mailto:${email}`} className={styles.email}>{email} </Link></span>}
+              <span>{textEnd}</span>
             </p>
             <div className={styles.days}>
               <p className={styles.day}>M-F:</p>

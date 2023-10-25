@@ -95,47 +95,49 @@ export const ContactForm = ({ onSubmitSuccess }) => {
   };
 
   return (
-    <div>
+    <div className={styles.formWrapper}>
       <Formik initialValues={initialValues} validationSchema={validationSchema} validateOnBlur onSubmit={onSubmit}>
         <Form className={styles.form}>
-          <div
-            className={styles.inputData}
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <Field
-              className={styles.input}
-              type="text"
-              id="name"
-              name="name"
-              onFocus={() => setFieldStates({ ...fieldStates, name: true })}
-              onBlur={(e) => handleFieldChange('name', e.target.value)}
-            />
-            <label
-              htmlFor="name"
-              className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
+          <div className={styles.inputWrapper}>
+            <div
+              className={styles.inputData}
+              data-aos="fade-up"
+              data-aos-duration="1000"
             >
-              Name
-            </label>
-            <ErrorMessage name="name" component="div" className={styles.errorMessage} />
-          </div>
+              <Field
+                className={styles.input}
+                type="text"
+                id="name"
+                name="name"
+                onFocus={() => setFieldStates({ ...fieldStates, name: true })}
+                onBlur={(e) => handleFieldChange('name', e.target.value)}
+              />
+              <label
+                htmlFor="name"
+                className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
+              >
+                Name
+              </label>
+              <ErrorMessage name="name" component="div" className={styles.errorMessage} />
+            </div>
 
-          <div className={styles.inputData}>
-            <Field
-              className={styles.input}
-              type="text"
-              id="surname"
-              name="surname"
-              onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
-              onBlur={(e) => handleFieldChange('surname', e.target.value)}
-            />
-            <label
-              htmlFor="surname"
-              className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
-            >
-              Nachname
-            </label>
-            <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
+            <div className={styles.inputData}>
+              <Field
+                className={styles.input}
+                type="text"
+                id="surname"
+                name="surname"
+                onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
+                onBlur={(e) => handleFieldChange('surname', e.target.value)}
+              />
+              <label
+                htmlFor="surname"
+                className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
+              >
+                Nachname
+              </label>
+              <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
+            </div>
           </div>
 
           <div className={styles.inputWrapper}>

@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import phone from 'yup-phone';
-import Inputmask from 'inputmask';
 import axios from 'axios';
 import styles from './ContactForm.module.scss';
 
@@ -137,10 +135,10 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             <Field
               className={styles.input}
               type="text"
-              id="surname"
-              name="surname" // Измените это на "surname"
+              id="Nachname"
+              name="Nachname"
               onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
-              onBlur={(e) => handleFieldChange('surname', e.target.value)}
+              onBlur={(e) => handleFieldChange('Nachname', e.target.value)}
             />
             <label
               htmlFor="surname"

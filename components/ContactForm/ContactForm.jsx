@@ -164,27 +164,19 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div
-            className={styles.inputData}
-            data-aos="fade-up"
-            data-aos-duration="1800"
-          >
-            <Field
-              className={styles.input}
-              type="text"
-              id="subject"
-              name="subject"
-              onFocus={() => setFieldStates({ ...fieldStates, subject: true })}
-              onBlur={(e) => handleFieldChange('subject', e.target.value)}
-            />
-            <label
-              htmlFor="subject"
-              className={`${styles.label} ${fieldStates.subject || initialValues.subject ? styles.focused : ''}`}
-            >
+          <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
+            <label htmlFor="subject" className={styles.label}>
               Subject
             </label>
+            <Field as="select" id="subject" name="subject">
+              <option value="">Select a subject</option>
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Technical Support">Technical Support</option>
+              <option value="Feedback">Feedback</option>
+            </Field>
             <ErrorMessage name="subject" component="div" className={styles.errorMessage} />
           </div>
+
 
           <div
             className={`${styles.inputData} ${styles.textarea}`}

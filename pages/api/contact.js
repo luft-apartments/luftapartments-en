@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         from: email,
         to: 'alexander.banduk@gmail.com',
         subject: `New message from ${name} - Luft Apartments`,
-        text: `${message}\n\nContact Details:\nName: ${name}\nSurname: ${surname}\nPhone: ${phone}\nEmail: ${email}\nApartment: ${apartments}`,
+        text: `${message}\n\nContact Details:\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nSubject: ${subject}\nApartment: ${apartments}`,
       };
 
       // Отправляем письмо

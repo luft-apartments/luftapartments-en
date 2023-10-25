@@ -165,28 +165,30 @@ export const ContactForm = ({ onSubmitSuccess }) => {
           </div>
 
           <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
-            <label
-              htmlFor="apartments"
-              className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
-            >
-              Apartments
-            </label>
-            <Field
-              as="select"
-              id="apartments"
-              name="apartments"
-              onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
-              onBlur={(e) => handleFieldChange('apartments', e.target.value)}
-              className={styles.select}
-            >
-              <option value=""></option>
-              <option value="Apartment 2A">Apartment 2A</option>
-              <option value="Apartment 3A">Apartment 3A</option>
-              <option value="Apartment 1B">Apartment 1B</option>
-              <option value="Apartment 2B">Apartment 2B</option>
-              <option value="Apartment 3B">Apartment 3B</option>
-            </Field>
-            <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
+            <div className={styles.selectWrapper}>
+              <label
+                htmlFor="apartments"
+                className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
+              >
+                Apartments
+              </label>
+              <Field
+                as="select"
+                id="apartments"
+                name="apartments"
+                onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
+                onBlur={(e) => handleFieldChange('apartments', e.target.value)}
+                className={styles.select}
+              >
+                <option value=""></option>
+                <option value="Apartment 2A">Apartment 2A</option>
+                <option value="Apartment 3A">Apartment 3A</option>
+                <option value="Apartment 1B">Apartment 1B</option>
+                <option value="Apartment 2B">Apartment 2B</option>
+                <option value="Apartment 3B">Apartment 3B</option>
+              </Field>
+              <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
+            </div>
           </div>
 
 

@@ -8,6 +8,7 @@ import styles from './ContactForm.module.scss';
 
 const initialValues = {
   name: '',
+  surname: '',
   phone: '',
   email: '',
   apartments: '',
@@ -28,6 +29,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
+    surname: false,
     phone: false,
     email: false,
     apartments: false,
@@ -116,6 +118,24 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               Name
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
+          </div>
+
+          <div className={styles.inputData}>
+            <Field
+              className={styles.input}
+              type="text"
+              id="surname"
+              name="surname"
+              onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
+              onBlur={(e) => handleFieldChange('surname', e.target.value)}
+            />
+            <label
+              htmlFor="surname"
+              className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
+            >
+              Nachname
+            </label>
+            <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
           </div>
 
           <div className={styles.inputWrapper}>

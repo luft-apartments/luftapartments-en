@@ -10,7 +10,7 @@ const initialValues = {
   name: '',
   phone: '',
   email: '',
-  apartments: '',
+  subject: '',
   message: '',
 };
 
@@ -18,18 +18,9 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  apartments: Yup.string().required('Required'),
   subject: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
-
-const apartmentsOptions = [
-  { value: '1', label: 'Apartment 2A' },
-  { value: '2', label: 'Apartment 3A' },
-  { value: '3', label: 'Apartment 1B' },
-  { value: '4', label: 'Apartment 2B' },
-  { value: '5', label: 'Apartment 3B' }
-]
 
 export const ContactForm = ({ onSubmitSuccess }) => {
 
@@ -39,7 +30,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
     name: false,
     phone: false,
     email: false,
-    apartments: false,
+    subject: false,
     message: false,
   });
 
@@ -189,7 +180,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Message
+              Sonderwunsch
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>

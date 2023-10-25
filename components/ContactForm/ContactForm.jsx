@@ -138,7 +138,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               className={styles.input}
               type="text"
               id="surname"
-              name="surname"
+              name="surname" // Измените это на "surname"
               onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
               onBlur={(e) => handleFieldChange('surname', e.target.value)}
             />

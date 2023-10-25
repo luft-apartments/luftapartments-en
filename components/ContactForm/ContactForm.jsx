@@ -61,9 +61,9 @@ export const ContactForm = ({ onSubmitSuccess }) => {
         onSubmitSuccess();
       }
 
-      setTimeout(() => {
-        setIsMessageVisible(false);
-      }, 0); // Hide the message popup after 5 seconds
+      // setTimeout(() => {
+      //   setIsMessageVisible(false);
+      // }, 5000); // Hide the message popup after 5 seconds
     } catch (error) {
       console.error('Ошибка при отправке формы:', error);
       // Здесь вы можете добавить код для обработки ошибки отправки, например, вывод сообщения пользователю

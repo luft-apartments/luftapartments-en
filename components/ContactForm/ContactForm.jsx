@@ -208,7 +208,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Message
+              Sonderwunsch
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>
@@ -218,7 +218,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               className={styles.button}
               type="submit"
             >
-              Send
+              Anfrage senden
             </button>
           </div>
         </Form>

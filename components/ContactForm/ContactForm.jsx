@@ -113,7 +113,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="name"
               className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              Name und Nachname
+              Name
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
           </div>
@@ -136,7 +136,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="phone"
                 className={`${styles.label} ${fieldStates.phone || initialValues.phone ? styles.focused : ''}`}
               >
-                Telefonnummer
+                Phone
               </label>
               <ErrorMessage name="phone" component="div" className={styles.errorMessage} />
             </div>
@@ -165,6 +165,28 @@ export const ContactForm = ({ onSubmitSuccess }) => {
           </div>
 
           <div
+            className={styles.inputData}
+            data-aos="fade-up"
+            data-aos-duration="1800"
+          >
+            <Field
+              className={styles.input}
+              type="text"
+              id="subject"
+              name="subject"
+              onFocus={() => setFieldStates({ ...fieldStates, subject: true })}
+              onBlur={(e) => handleFieldChange('subject', e.target.value)}
+            />
+            <label
+              htmlFor="subject"
+              className={`${styles.label} ${fieldStates.subject || initialValues.subject ? styles.focused : ''}`}
+            >
+              Subject
+            </label>
+            <ErrorMessage name="subject" component="div" className={styles.errorMessage} />
+          </div>
+
+          <div
             className={`${styles.inputData} ${styles.textarea}`}
             data-aos="fade-up"
             data-aos-duration="2000"
@@ -180,7 +202,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Sonderwunsch
+              Message
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>
@@ -188,6 +210,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
           <div className={styles.buttonBlock}>
             <button
               className={styles.button}
+              type="submit"
             >
               Send
             </button>

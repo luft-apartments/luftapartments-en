@@ -10,7 +10,7 @@ const initialValues = {
   name: '',
   phone: '',
   email: '',
-  subject: '',
+  apartments: '',
   message: '',
 };
 
@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  subject: Yup.string().required('Required'),
+  apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
 
@@ -30,7 +30,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
     name: false,
     phone: false,
     email: false,
-    subject: false,
+    apartments: false,
     message: false,
   });
 
@@ -165,16 +165,18 @@ export const ContactForm = ({ onSubmitSuccess }) => {
           </div>
 
           <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
-            <label htmlFor="subject" className={styles.label}>
-              Subject
+            <label htmlFor="apartments" className={styles.label}>
+              Apartments
             </label>
-            <Field as="select" id="subject" name="subject">
-              <option value="">Select a subject</option>
-              <option value="General Inquiry">General Inquiry</option>
-              <option value="Technical Support">Technical Support</option>
-              <option value="Feedback">Feedback</option>
+            <Field as="select" id="apartments" name="apartments">
+              <option value=""></option>
+              <option value="Apartment 2A">Apartment 2A</option>
+              <option value="Apartment 3A">Apartment 3A</option>
+              <option value="Apartment 1B">Apartment 1B</option>
+              <option value="Apartment 2B">Apartment 2B</option>
+              <option value="Apartment 3B">Apartment 3B</option>
             </Field>
-            <ErrorMessage name="subject" component="div" className={styles.errorMessage} />
+            <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
           </div>
 
 

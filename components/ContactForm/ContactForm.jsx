@@ -61,9 +61,9 @@ export const ContactForm = ({ onSubmitSuccess }) => {
         onSubmitSuccess();
       }
 
-      // setTimeout(() => {
-      //   setIsMessageVisible(false);
-      // }, 5000); // Hide the message popup after 5 seconds
+      setTimeout(() => {
+        setIsMessageVisible(false);
+      }, 5000); // Hide the message popup after 5 seconds
     } catch (error) {
       console.error('Ошибка при отправке формы:', error);
       // Здесь вы можете добавить код для обработки ошибки отправки, например, вывод сообщения пользователю
@@ -80,7 +80,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
         <div className={styles.messagePopup}>
           <div className={styles.messageContent}>
             <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 20 20" fill="none">
-              <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#001A72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#ff7300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div className={styles.messageTextWrapper}>
               <h3 className={styles.messageTitle}>Danke schön!</h3>

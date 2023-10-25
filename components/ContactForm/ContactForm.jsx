@@ -3,23 +3,36 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import phone from 'yup-phone';
+import Inputmask from 'inputmask';
 import axios from 'axios';
 import styles from './ContactForm.module.scss';
 
+const apartmentsOptions = [
+  { value: '1b', label: 'Apartment 1B' },
+  { value: '2b', label: 'Apartment 2B' },
+  { value: '3b', label: 'Apartment 3B' },
+  { value: '2a', label: 'Apartment 2A' },
+  { value: '3a', label: 'Apartment 3A' },
+];
+
 const initialValues = {
   name: '',
+  surname: '',
   phone: '',
   email: '',
-  subject: '',
+  apartments: '',
   message: '',
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Required'),
-  phone: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email address').required('Required'),
-  subject: Yup.string().required('Required'),
-  message: Yup.string().required('Required'),
+  name: Yup.string().required('Das ist ein Pflichtfeld'),
+  surname: Yup.string().required('Das ist ein Pflichtfeld'),
+  country: Yup.string().required('Das ist ein Pflichtfeld'),
+  phone: Yup.string().required('Das ist ein Pflichtfeld'),
+  email: Yup.string().email('Ungültige Email-Adresse').required('Das ist ein Pflichtfeld'),
+  apartments: Yup.string().required('Das ist ein Pflichtfeld'),
+  message: Yup.string().required('Das ist ein Pflichtfeld'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {
@@ -28,9 +41,9 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
+    surname: false,
     phone: false,
     email: false,
-    subject: false,
     message: false,
   });
 
@@ -116,6 +129,26 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               Name
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
+          </div>
+
+          <div
+            className={styles.inputData}
+          >
+            <Field
+              className={styles.input}
+              type="text"
+              id="surname"
+              name="surname"
+              onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
+              onBlur={(e) => handleFieldChange('surname', e.target.value)}
+            />
+            <label
+              htmlFor="surname"
+              className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
+            >
+              Nachname
+            </label>
+            <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
           </div>
 
           <div className={styles.inputWrapper}>

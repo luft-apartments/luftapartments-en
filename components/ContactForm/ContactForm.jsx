@@ -124,29 +124,9 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="name"
               className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              Name
+              Name und Nachname
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
-          </div>
-
-          <div
-            className={styles.inputData}
-          >
-            <Field
-              className={styles.input}
-              type="text"
-              id="Nachname"
-              name="Nachname"
-              onFocus={() => setFieldStates({ ...fieldStates, surname: true })}
-              onBlur={(e) => handleFieldChange('Nachname', e.target.value)}
-            />
-            <label
-              htmlFor="surname"
-              className={`${styles.label} ${fieldStates.surname || initialValues.surname ? styles.focused : ''}`}
-            >
-              Nachname
-            </label>
-            <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
           </div>
 
           <div className={styles.inputWrapper}>

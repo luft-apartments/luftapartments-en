@@ -13,7 +13,6 @@ export const Heading = ({ textAlign, content, level, textColor, backgroundColor,
       level
     )} ${getTextAlign(textAlign)}`,
     style: { ...textColorStyle, ...backgroundColorStyle },
-    "data-aos": "fade-up"
   });
   return tag;
 };

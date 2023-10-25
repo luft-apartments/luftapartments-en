@@ -33,7 +33,9 @@ export default async function RootLayout({ children }) {
           items={data.mainMenuItems}
           logo={data.logo}
         />
-        {children}
+        <main>
+          {children}
+        </main>
         <Footer
           copyright={footerData.copyright}
           footerLinksApartments={footerData.footerLinksApartments}

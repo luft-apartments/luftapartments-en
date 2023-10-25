@@ -1,15 +1,14 @@
 import { getOverlayColor, getOverlayOpacity, getMarginBottom } from "utils/layout"
 import Image from "next/image"
 
-export const Cover = ({ children, background, overlayColor, overlayOpacity, minHeight, marginBottom }) => {
-
+export const Cover = ({ children, background, overlayColor, overlayOpacity, minHeight, marginBottom, alt }) => {
   return (
     <div
       className="h-screen text-white bg-black bg-opacity-50 relative min-h[400px] flex justify-center items-center"
       style={{ height: minHeight, marginBottom: getMarginBottom(marginBottom) }}
     >
       <Image
-        alt="Cover"
+        alt={alt}
         src={background}
         fill
         className="mix-blend-soft-light object-cover"

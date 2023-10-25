@@ -305,6 +305,9 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case 'core/cover': {
+        const headingText = block.innerBlocks.find(
+          block => block.name === "core/heading"
+        )?.attributes?.content;
         // console.log("COVER: ", block.attributes);
         return (
           <Cover
@@ -315,6 +318,7 @@ export const BlockRenderer = ({ blocks }) => {
             minHeight={block.attributes.minHeight}
             marginTop={block.attributes.style?.spacing?.margin?.top}
             marginBottom={block.attributes.style?.spacing?.margin?.bottom}
+            alt={headingText || 'Luft Apartments'}
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Cover>
@@ -360,6 +364,10 @@ export const BlockRenderer = ({ blocks }) => {
               theme[block.attributes.backgroundColor] ||
               block.attributes.style?.color?.background
             }
+            paddingTop={block.attributes.style?.spacing?.padding?.top}
+            paddingBottom={block.attributes.style?.spacing?.padding?.bottom}
+            paddingLeft={block.attributes.style?.spacing?.padding?.left}
+            paddingRight={block.attributes.style?.spacing?.padding?.right}
           >
             <BlockRenderer blocks={block.innerBlocks} />
           </Column>

@@ -10,7 +10,7 @@ const initialValues = {
   name: '',
   phone: '',
   email: '',
-  subject: '',
+  apartments: '',
   message: '',
 };
 
@@ -18,9 +18,18 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
+  apartments: Yup.string().required('Required'),
   subject: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
+
+const apartmentsOptions = [
+  { value: '1', label: 'Apartment 2A' },
+  { value: '2', label: 'Apartment 3A' },
+  { value: '3', label: 'Apartment 1B' },
+  { value: '4', label: 'Apartment 2B' },
+  { value: '5', label: 'Apartment 3B' }
+]
 
 export const ContactForm = ({ onSubmitSuccess }) => {
 
@@ -30,7 +39,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
     name: false,
     phone: false,
     email: false,
-    subject: false,
+    apartments: false,
     message: false,
   });
 
@@ -113,7 +122,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="name"
               className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              Name
+              Name und Nachname
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
           </div>
@@ -136,7 +145,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="phone"
                 className={`${styles.label} ${fieldStates.phone || initialValues.phone ? styles.focused : ''}`}
               >
-                Phone
+                Telefonnummer
               </label>
               <ErrorMessage name="phone" component="div" className={styles.errorMessage} />
             </div>
@@ -164,26 +173,31 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div
-            className={styles.inputData}
-            data-aos="fade-up"
-            data-aos-duration="1800"
-          >
-            <Field
-              className={styles.input}
-              type="text"
-              id="subject"
-              name="subject"
-              onFocus={() => setFieldStates({ ...fieldStates, subject: true })}
-              onBlur={(e) => handleFieldChange('subject', e.target.value)}
-            />
-            <label
-              htmlFor="subject"
-              className={`${styles.label} ${fieldStates.subject || initialValues.subject ? styles.focused : ''}`}
-            >
-              Subject
-            </label>
-            <ErrorMessage name="subject" component="div" className={styles.errorMessage} />
+          <div className={styles.inputData}>
+            <div className={styles.selectWrapper}>
+              <Field
+                as="select"
+                id="apartments"
+                name="apartments"
+                className={`${styles.input} ${styles.select}`}
+                onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
+                onBlur={(e) => handleFieldChange('apartments', e.target.value)}
+              >
+                <option value="" disabled> </option>
+                {apartmentsOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Field>
+              <label
+                htmlFor="apartments"
+                className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''} ${styles.selectLabel}`}
+              >
+                Wunsch Apartment
+              </label>
+            </div>
+            <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
           </div>
 
           <div

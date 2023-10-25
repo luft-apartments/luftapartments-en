@@ -173,33 +173,6 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className={styles.inputData}>
-            <div className={styles.selectWrapper}>
-              <Field
-                as="select"
-                id="apartments"
-                name="apartments"
-                className={`${styles.input} ${styles.select}`}
-                onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
-                onBlur={(e) => handleFieldChange('apartments', e.target.value)}
-              >
-                <option value="" disabled> </option>
-                {apartmentsOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Field>
-              <label
-                htmlFor="apartments"
-                className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''} ${styles.selectLabel}`}
-              >
-                Wunsch Apartment
-              </label>
-            </div>
-            <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
-          </div>
-
           <div
             className={`${styles.inputData} ${styles.textarea}`}
             data-aos="fade-up"

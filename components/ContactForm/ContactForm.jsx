@@ -6,31 +6,20 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './ContactForm.module.scss';
 
-const apartmentsOptions = [
-  { value: '1b', label: 'Apartment 1B' },
-  { value: '2b', label: 'Apartment 2B' },
-  { value: '3b', label: 'Apartment 3B' },
-  { value: '2a', label: 'Apartment 2A' },
-  { value: '3a', label: 'Apartment 3A' },
-];
-
 const initialValues = {
   name: '',
-  surname: '',
   phone: '',
   email: '',
-  apartments: '',
+  subject: '',
   message: '',
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Das ist ein Pflichtfeld'),
-  surname: Yup.string().required('Das ist ein Pflichtfeld'),
-  country: Yup.string().required('Das ist ein Pflichtfeld'),
-  phone: Yup.string().required('Das ist ein Pflichtfeld'),
-  email: Yup.string().email('Ungültige Email-Adresse').required('Das ist ein Pflichtfeld'),
-  apartments: Yup.string().required('Das ist ein Pflichtfeld'),
-  message: Yup.string().required('Das ist ein Pflichtfeld'),
+  name: Yup.string().required('Required'),
+  phone: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email address').required('Required'),
+  subject: Yup.string().required('Required'),
+  message: Yup.string().required('Required'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {
@@ -39,9 +28,9 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
-    surname: false,
     phone: false,
     email: false,
+    subject: false,
     message: false,
   });
 
@@ -124,7 +113,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="name"
               className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              Name und Nachname
+              Name
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
           </div>

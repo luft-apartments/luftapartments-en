@@ -136,7 +136,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="phone"
                 className={`${styles.label} ${fieldStates.phone || initialValues.phone ? styles.focused : ''}`}
               >
-                Phone
+                Telefonnummer
               </label>
               <ErrorMessage name="phone" component="div" className={styles.errorMessage} />
             </div>

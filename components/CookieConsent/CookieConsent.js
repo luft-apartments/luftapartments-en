@@ -33,7 +33,7 @@ const CookieConsent = () => {
     <div className={styles.cookieBanner}>
       <p>Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern.</p>
       <button className={styles.buttonCookies} onClick={handleAccept}>Akzeptieren</button>
-      <button className={styles.buttonCookies} onClick={handleDecline}>Abfall</button>
+      <button className={styles.buttonCookies} onClick={handleDecline}>Ablehnen</button>
     </div>
   );
 };

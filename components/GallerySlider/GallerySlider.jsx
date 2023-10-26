@@ -42,6 +42,27 @@ export const GallerySlider = ({ slides }) => {
     thumbnail: slide.image,
     thumbnailClass: styles.galleryThumbnail,
     ariaLabel: "luft apartments",
+    originalAlt: slide.description,
+    thumbnailAlt: slide.description,
+    originalTitle: slide.title,
+    thumbnailTitle: slide.title,
+    description: slide.description,
+    originalClass: styles.galleryOriginal,
+    thumbnailLabel: slide.label,
+    thumbnailLabelClass: styles.galleryThumbnailLabel,
+    thumbnailPosition: thumbnailPosition,
+    renderItem: (item) => (
+      <div className={styles.galleryItem}>
+        <Image
+          width={1000}
+          height={480}
+          src={item.original}
+          alt={item.originalAlt}
+          title={item.originalTitle}
+          className={item.originalClass}
+        />
+      </div>
+    )
   }));
 
   return (
@@ -49,6 +70,8 @@ export const GallerySlider = ({ slides }) => {
       showPlayButton={false}
       showThumbnails={true}
       thumbnailPosition={thumbnailPosition}
+      slideOnThumbnailOver={true}
+      // showIndex={true}
       // thumbnailPosition="right"
       items={images}
       className={styles.gallerySlider}

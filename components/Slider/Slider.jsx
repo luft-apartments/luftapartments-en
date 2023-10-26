@@ -53,14 +53,14 @@ export const Slider = ({ slides }) => {
         ))}
         <div className={styles.buttons}>
           <div className='buttonPrev'>
-            <button className={`${styles.sliderButton} ${styles.buttonLeft}`}>
+            <button aria-label='gehe zur vorherigen folie' className={`${styles.sliderButton} ${styles.buttonLeft}`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
                 <path d="M6 1L1 6L6 11" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           </div>
           <div className='buttonNext'>
-            <button className={`${styles.sliderButton} ${styles.buttonRight}`}>
+            <button aria-label='gehe zur nächsten folie' className={`${styles.sliderButton} ${styles.buttonRight}`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
                 <path d="M1 11L6 6L1 1" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

@@ -5,7 +5,7 @@ import { FaLocationArrow, FaDog } from "react-icons/fa6";
 export const ApartmentsData = ({ adress, area, cost, floor, pets, rooms }) => {
   return (
     <div className={styles.apartmentsData}>
-      <h2 className={styles.title}>ab <span>{cost}€</span> / Nacht</h2>
+      <h2 className={styles.title}>Preis: ab <span>{cost}€</span> / Nacht</h2>
       <div className={styles.dataItems}>
         <div className={styles.dataItem}>
           <p className={styles.text}>Zimmer: <span>{rooms}</span></p>

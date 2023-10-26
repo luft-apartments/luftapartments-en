@@ -41,6 +41,7 @@ export const GallerySlider = ({ slides }) => {
     original: slide.image,
     thumbnail: slide.image,
     thumbnailClass: styles.galleryThumbnail,
+    ariaLabel: "luft apartments",
   }));
 
   return (

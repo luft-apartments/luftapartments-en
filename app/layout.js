@@ -1,4 +1,5 @@
 import { Raleway, Inter } from 'next/font/google';
+import Script from 'next/script';
 
 import '../styles/globals.css';
 import { MainMenu } from 'components/MainMenu';
@@ -26,6 +27,19 @@ export default async function RootLayout({ children }) {
   const footerData = await getFooter();
   return (
     <html lang="de" className={`${raleway.variable} ${inter.variable}`}>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-7P2WY7H1JN"
+      />
+      <Script id='google-analytics'>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-7P2WY7H1JN');
+        `}
+      </Script>
       <body className='font-body'>
         <MainMenu
           boldText={data.boldText}

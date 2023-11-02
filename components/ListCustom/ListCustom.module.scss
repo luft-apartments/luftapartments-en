@@ -1,0 +1,11 @@
+.list {
+  margin-bottom: clamp(1.25rem, 1.023rem + 1.14vw, 1.875rem);
+  padding-left: 1rem;
+  margin-bottom: 20px;
+}
+.listItem {
+  list-style-type: '\2713';
+  padding-left: 5px;
+  font-size: clamp(0.875rem, 0.875rem + 0.5vw, 1rem);
+  line-height: 170%;
+}

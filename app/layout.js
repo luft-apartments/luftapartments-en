@@ -27,7 +27,10 @@ export default async function RootLayout({ children }) {
   const footerData = await getFooter();
   return (
     <html lang="de" className={`${raleway.variable} ${inter.variable}`}>
-      <Script
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
+      {/* <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-7P2WY7H1JN"
       />
@@ -39,7 +42,7 @@ export default async function RootLayout({ children }) {
 
           gtag('config', 'G-7P2WY7H1JN');
         `}
-      </Script>
+      </Script> */}
       <body className='font-body'>
         <MainMenu
           boldText={data.boldText}

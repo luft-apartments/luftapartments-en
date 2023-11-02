@@ -33,15 +33,16 @@ export const MediaBlock = ({
             <p className={styles.textString}>
               <span>{textStart} </span>
               {phone && <span><Link href={`tel:${phoneReplaced}`} className={styles.phone}>{phone} </Link></span>}
-              {email && <span><Link href={`mailto:${email}`} className={styles.email}>{email} </Link></span>}
+              {/* после емейла убрал пробел в коде */}
+              {email && <span><Link href={`mailto:${email}`} className={styles.email}>{email}</Link></span>}
               <span>{textEnd}</span>
             </p>
             <div className={styles.days}>
-              <p className={styles.day}>M-F:</p>
+              <p className={styles.day}>Montag bis Freitag:</p>
               <p className={styles.weekdays}>{weekdays}</p>
             </div>
             <div className={styles.days}>
-              <p className={styles.day}>Sat:</p>
+              <p className={styles.day}>Samstag:</p>
               <p className={styles.weekends}>{weekends}</p>
             </div>
           </div>

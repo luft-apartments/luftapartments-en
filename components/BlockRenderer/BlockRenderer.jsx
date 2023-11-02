@@ -20,6 +20,7 @@ import { MediaBlock } from "components/MediaBlock";
 import { Carousel } from "components/Carousel";
 import { AllApartmentsBlock } from "components/AllApartmentsBlock";
 import { GridBlock } from "../GridBlock/GridBlock";
+import { ListCustom } from "../ListCustom/ListCustom";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -92,6 +93,23 @@ export const BlockRenderer = ({ blocks }) => {
         image: data[`carousel_${slideIndex}_slide_image`],
         name: data[`carousel_${slideIndex}_slide_name`],
         distance: data[`carousel_${slideIndex}_slide_distance`],
+      };
+      arr.push(slide);
+    }
+
+    return arr;
+  }
+
+  const objToArrayList = (data) => {
+    const arr = [];
+    const slideCount = data.items;
+    // console.log("ARRAY LIST: ", slideCount)
+
+    for (let i = 0; i < slideCount; i++) {
+      const slideIndex = i.toString();
+      const slide = {
+        strongText: data[`items_${slideIndex}_item_strong_text`],
+        itemText: data[`items_${slideIndex}_item_item_text`],
       };
       arr.push(slide);
     }
@@ -190,6 +208,16 @@ export const BlockRenderer = ({ blocks }) => {
           />
         )
       }
+      case "acf/listcustom": {
+        const innerBlocks = objToArrayList(block.attributes.data, "items");
+        // console.log("LIST CUSTOM: ", innerBlocks);
+        return (
+          <ListCustom
+            key={block.id}
+            items={innerBlocks}
+          />
+        )
+      }
       case "acf/apartmentdata": {
         // console.log("APARTMENT DATA: ", block.attributes);
         return (
@@ -263,23 +291,6 @@ export const BlockRenderer = ({ blocks }) => {
           />
         )
       }
-      // case "core/list": {
-      //   console.log("LIST: ", block.attributes);
-      //   return (
-      //     <List key={block.id}>
-      //       <BlockRenderer blocks={block.innerBlocks} />
-      //     </List>
-      //   )
-      // }
-      // case "core/list-item": {
-      //   console.log("LIST ITEM: ", block.attributes);
-      //   return (
-      //     <ListItem
-      //       key={block.id}
-      //       content={block.orighinalContent}
-      //     />
-      //   )
-      // }
       case "core/post-title":
       case "core/heading": {
         // console.log("HEADING: ", block.attributes);

@@ -60,11 +60,12 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const onSubmit = async (values, { resetForm }) => {
     try {
+      const { checkin, checkout, ...otherValues } = values; // Извлекаем checkin и checkout, оставляем остальные значения
       await axios.post('/api/contact', values); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');
       resetForm(); // Сбрасываем значения полей формы к исходным значениям
-      setValues(initialValues); // Сбрасываем значения полей формы в локальном состоянии
+      setValues({ ...initialValues, checkin, checkout }); // Сбрасываем значения полей формы в локальном состоянии, сохраняя checkin и checkout
       setIsMessageSent(true);
       setIsMessageVisible(true);
 
@@ -81,6 +82,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
       // Здесь вы можете добавить код для обработки ошибки отправки, например, вывод сообщения пользователю
     }
   };
+
 
   // Создаем портал для всплывающего окна
   const MessagePopup = ({ isOpen }) => {

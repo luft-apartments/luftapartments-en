@@ -239,7 +239,6 @@ export const BlockRenderer = ({ blocks }) => {
             key={block.id}
             balcony={block.attributes.data.balcony}
             bedrooms={block.attributes.data.bedrooms}
-            elevator={block.attributes.data.elevator}
             equipment={block.attributes.data.equipment}
             furniture={block.attributes.data.furniture}
             internet={block.attributes.data.internet}

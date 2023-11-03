@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { name, surname, phone, email, apartments, message } = req.body;
+      const { name, surname, phone, email, apartments, message, checkInDate, checkOutDate } = req.body; // Добавляем checkInDate и checkOutDate
 
       // Создаем транспорт для отправки почты (замените данными вашего почтового сервера)
       const transporter = nodemailer.createTransport({
@@ -22,7 +22,14 @@ export default async function handler(req, res) {
         from: email,
         to: 'alexander.banduk@gmail.com',
         subject: `New message from ${name} - Luft Apartments`,
-        text: `${message}\n\nContact Details:\nName: ${name}\nSurname: ${surname}\nPhone: ${phone}\nEmail: ${email}\nApartment: ${apartments}`,
+        text: `${message}\n\nContact Details:
+        \nName: ${name}
+        \nSurname: ${surname}
+        \nPhone: ${phone}
+        \nEmail: ${email}
+        \nApartment: ${apartments}
+        \nCheck-in Date: ${checkInDate}
+        \nCheck-out Date: ${checkOutDate}`,
       };
 
       // Отправляем письмо

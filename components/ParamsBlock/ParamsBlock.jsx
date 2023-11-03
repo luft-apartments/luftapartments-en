@@ -5,7 +5,6 @@ import { MdOutlineBed, MdOutlineDesk, MdWc, MdBalcony, MdOutlineElevator, MdDire
 export const ParamsBlock = ({
   balcony,
   bedrooms,
-  elevator,
   equipment,
   furniture,
   internet,
@@ -24,10 +23,6 @@ export const ParamsBlock = ({
           <div className={styles.item}>
             <MdOutlineBed style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Schlafzimmer: <span>{bedrooms}</span></p>
-          </div>
-          <div className={styles.item}>
-            <MdOutlineElevator style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>Aufzug: <span>{elevator}</span></p>
           </div>
           <div className={styles.item}>
             <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />

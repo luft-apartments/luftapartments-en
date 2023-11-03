@@ -52,10 +52,13 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const onSubmit = async (values, { resetForm }) => {
     try {
+      const checkInDate = new Date(values.checkInDate); // Преобразовать дату заезда в объект Date
+      const checkOutDate = new Date(values.checkOutDate); // Преобразовать дату выезда в объект Date
+
       await axios.post('/api/contact', {
         ...values,
-        checkInDate: values.checkInDate.toISOString(), // Преобразование даты в строку
-        checkOutDate: values.checkOutDate.toISOString(), // Преобразование даты в строку
+        checkInDate,
+        checkOutDate,
       }); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');

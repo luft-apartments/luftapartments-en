@@ -13,8 +13,6 @@ const initialValues = {
   email: '',
   apartments: '',
   message: '',
-  checkInDate: null, // Дата заезда
-  checkOutDate: null, // Дата выезда
 };
 
 const validationSchema = Yup.object({
@@ -23,8 +21,6 @@ const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Required'),
   apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
-  checkInDate: Yup.date().required('Required'),
-  checkOutDate: Yup.date().required('Required'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {
@@ -52,14 +48,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const onSubmit = async (values, { resetForm }) => {
     try {
-      const checkInDate = new Date(values.checkInDate); // Преобразовать дату заезда в объект Date
-      const checkOutDate = new Date(values.checkOutDate); // Преобразовать дату выезда в объект Date
-
-      await axios.post('/api/contact', {
-        ...values,
-        checkInDate,
-        checkOutDate,
-      }); // Отправляем данные формы на сервер
+      await axios.post('/api/contact', values); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');
       resetForm(); // Сбрасываем значения полей формы к исходным значениям
@@ -197,50 +186,13 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className={styles.inputWrapper}>
-            <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
-              <Field
-                type="date"
-                id="checkInDate"
-                name="checkInDate"
-                onFocus={() => setFieldStates({ ...fieldStates, checkInDate: true })}
-                onBlur={(e) => handleFieldChange('checkInDate', e.target.value)}
-              />
-              <label
-                htmlFor="checkInDate"
-                className={`${styles.label} ${fieldStates.checkInDate || initialValues.checkInDate ? styles.focused : ''}`}
-              >
-                Check-in Date
-              </label>
-              <ErrorMessage name="checkInDate" component="div" className={styles.errorMessage} />
-            </div>
-
-            <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
-              <Field
-                type="date"
-                id="checkOutDate"
-                name="checkOutDate"
-                onFocus={() => setFieldStates({ ...fieldStates, checkOutDate: true })}
-                onBlur={(e) => handleFieldChange('checkOutDate', e.target.value)}
-              />
-              <label
-                htmlFor="checkOutDate"
-                className={`${styles.label} ${fieldStates.checkOutDate || initialValues.checkOutDate ? styles.focused : ''}`}
-              >
-                Check-out Date
-              </label>
-              <ErrorMessage name="checkOutDate" component="div" className={styles.errorMessage} />
-            </div>
-          </div>
-
-
           <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
             <div className={styles.selectWrapper}>
               <label
                 htmlFor="apartments"
                 className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
               >
-                Wunschapartment
+                Apartments
               </label>
               <Field
                 as="select"
@@ -278,7 +230,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Ihre Nachricht
+              Sonderwunsch
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>

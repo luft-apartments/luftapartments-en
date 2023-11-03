@@ -5,12 +5,16 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './ContactForm.module.scss';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 
 const initialValues = {
   name: '',
   surname: '',
   phone: '',
   email: '',
+  checkin: null, // Добавьте checkin в initialValues
+  checkout: null, // Добавьте checkout в initialValues
   apartments: '',
   message: '',
 };
@@ -19,15 +23,17 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  checkin: Yup.date().required('Required'),
-  checkout: Yup.date().required('Required').when('checkin', (checkin, schema) => {
-    return schema.min(checkin, 'Check-Out Date must be after Check-In Date');
-  }),
+  // checkin: Yup.date().required('Required'),
+  // checkout: Yup.date().required('Required'),
   apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {
+
+  const [checkinFocused, setCheckinFocused] = useState(false);
+  const [checkoutFocused, setCheckoutFocused] = useState(false);
+
 
   const [values, setValues] = useState(initialValues);
 
@@ -192,40 +198,44 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
-            <Field
-              type="date"
-              id="checkin"
-              name="checkin"
-              onFocus={() => setFieldStates({ ...fieldStates, checkin: true })}
-              onBlur={(e) => handleFieldChange('checkin', e.target.value)}
-            />
-            <label
-              htmlFor="checkin"
-              className={`${styles.label} ${fieldStates.checkin || initialValues.checkin ? styles.focused : ''}`}
-            >
-              Check-In Date
-            </label>
-            <ErrorMessage name="checkin" component="div" className={styles.errorMessage} />
-          </div>
+          <div className={styles.inputWrapper}>
+            <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
+              <DatePicker
+                selected={values.checkin}
+                onChange={(date) => setValues({ ...values, checkin: date })}
+                onFocus={() => setCheckinFocused(true)}
+                onBlur={() => setCheckinFocused(false)}
+                placeholderText=""
+                dateFormat="dd/MM/yyyy"
+              />
+              <label
+                htmlFor="checkin"
+                className={`${styles.label} ${checkinFocused || values.checkin ? styles.focused : ''}`}
+              >
+                Einreise
+              </label>
+              <ErrorMessage name="checkin" component="div" className={styles.errorMessage} />
+            </div>
 
-          <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
-            <Field
-              type="date"
-              id="checkout"
-              name="checkout"
-              onFocus={() => setFieldStates({ ...fieldStates, checkout: true })}
-              onBlur={(e) => handleFieldChange('checkout', e.target.value)}
-            />
-            <label
-              htmlFor="checkout"
-              className={`${styles.label} ${fieldStates.checkout || initialValues.checkout ? styles.focused : ''}`}
-            >
-              Check-Out Date
-            </label>
-            <ErrorMessage name="checkout" component="div" className={styles.errorMessage} />
+            <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
+              <DatePicker
+                selected={values.checkout}
+                onChange={(date) => setValues({ ...values, checkout: date })}
+                onFocus={() => setCheckoutFocused(true)}
+                onBlur={() => setCheckoutFocused(false)}
+                placeholderText=""
+                dateFormat="dd/MM/yyyy"
+                className={styles.datepicker}
+              />
+              <label
+                htmlFor="checkout"
+                className={`${styles.label} ${checkoutFocused || values.checkout ? styles.focused : ''}`}
+              >
+                Ausreise
+              </label>
+              <ErrorMessage name="checkout" component="div" className={styles.errorMessage} />
+            </div>
           </div>
-
 
           <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
             <div className={styles.selectWrapper}>
@@ -233,7 +243,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="apartments"
                 className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
               >
-                Apartments
+                Wunschapartment
               </label>
               <Field
                 as="select"
@@ -271,7 +281,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Sonderwunsch
+              Ihre Nachricht
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>

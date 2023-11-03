@@ -61,7 +61,11 @@ export const ContactForm = ({ onSubmitSuccess }) => {
   const onSubmit = async (values, { resetForm }) => {
     try {
       const { checkin, checkout, ...otherValues } = values; // Извлекаем checkin и checkout, оставляем остальные значения
-      await axios.post('/api/contact', { ...otherValues, checkin, checkout }); // Отправляем данные формы на сервер
+      // Преобразуйте checkin и checkout в строковый формат "dd/MM/yyyy"
+      const formattedCheckin = checkin ? checkin.toLocaleDateString('en-GB') : '';
+      const formattedCheckout = checkout ? checkout.toLocaleDateString('en-GB') : '';
+
+      await axios.post('/api/contact', { ...otherValues, checkin: formattedCheckin, checkout: formattedCheckout }); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');
       resetForm(); // Сбрасываем значения полей формы к исходным значениям

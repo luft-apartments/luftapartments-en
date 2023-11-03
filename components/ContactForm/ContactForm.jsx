@@ -5,16 +5,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './ContactForm.module.scss';
-import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
 
 const initialValues = {
   name: '',
   surname: '',
   phone: '',
   email: '',
-  checkin: null, // Добавьте checkin в initialValues
-  checkout: null, // Добавьте checkout в initialValues
   apartments: '',
   message: '',
 };
@@ -23,17 +19,15 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  // checkin: Yup.date().required('Required'),
-  // checkout: Yup.date().required('Required'),
+  checkin: Yup.date().required('Required'),
+  checkout: Yup.date().required('Required').when('checkin', (checkin, schema) => {
+    return schema.min(checkin, 'Check-Out Date must be after Check-In Date');
+  }),
   apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {
-
-  const [checkinFocused, setCheckinFocused] = useState(false);
-  const [checkoutFocused, setCheckoutFocused] = useState(false);
-
 
   const [values, setValues] = useState(initialValues);
 
@@ -60,16 +54,11 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const onSubmit = async (values, { resetForm }) => {
     try {
-      const { checkin, checkout, ...otherValues } = values; // Извлекаем checkin и checkout, оставляем остальные значения
-      // Преобразуйте checkin и checkout в строковый формат "dd/MM/yyyy"
-      const formattedCheckin = checkin ? checkin.toLocaleDateString('en-GB') : '';
-      const formattedCheckout = checkout ? checkout.toLocaleDateString('en-GB') : '';
-
-      await axios.post('/api/contact', { ...otherValues, checkin: formattedCheckin, checkout: formattedCheckout }); // Отправляем данные формы на сервер
+      await axios.post('/api/contact', values); // Отправляем данные формы на сервер
       // Здесь вы можете добавить код для обработки успешной отправки, например, очистка формы или вывод сообщения пользователю
       console.log('Форма успешно отправлена!');
       resetForm(); // Сбрасываем значения полей формы к исходным значениям
-      setValues({ ...initialValues, checkin, checkout }); // Сбрасываем значения полей формы в локальном состоянии, сохраняя checkin и checkout
+      setValues(initialValues); // Сбрасываем значения полей формы в локальном состоянии
       setIsMessageSent(true);
       setIsMessageVisible(true);
 
@@ -86,7 +75,6 @@ export const ContactForm = ({ onSubmitSuccess }) => {
       // Здесь вы можете добавить код для обработки ошибки отправки, например, вывод сообщения пользователю
     }
   };
-
 
   // Создаем портал для всплывающего окна
   const MessagePopup = ({ isOpen }) => {
@@ -206,17 +194,18 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
           <div className={styles.inputWrapper}>
             <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
-              <DatePicker
-                selected={values.checkin}
-                onChange={(date) => setValues({ ...values, checkin: date })}
-                onFocus={() => setCheckinFocused(true)}
-                onBlur={() => setCheckinFocused(false)}
-                placeholderText=""
-                dateFormat="dd/MM/yyyy"
+              <Field
+                type="date"
+                id="checkin"
+                name="checkin"
+                placeholder=""
+                className={styles.inputDate}
+                onFocus={() => setFieldStates({ ...fieldStates, checkin: true })}
+                onBlur={(e) => handleFieldChange('checkin', e.target.value)}
               />
               <label
                 htmlFor="checkin"
-                className={`${styles.label} ${checkinFocused || values.checkin ? styles.focused : ''}`}
+                className={`${styles.label} ${styles.dateLabel}`}
               >
                 Einreise
               </label>
@@ -224,24 +213,23 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
 
             <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
-              <DatePicker
-                selected={values.checkout}
-                onChange={(date) => setValues({ ...values, checkout: date })}
-                onFocus={() => setCheckoutFocused(true)}
-                onBlur={() => setCheckoutFocused(false)}
-                placeholderText=""
-                dateFormat="dd/MM/yyyy"
-                className={styles.datepicker}
+              <Field
+                type="date"
+                id="checkout"
+                name="checkout"
+                onFocus={() => setFieldStates({ ...fieldStates, checkout: true })}
+                onBlur={(e) => handleFieldChange('checkout', e.target.value)}
               />
               <label
                 htmlFor="checkout"
-                className={`${styles.label} ${checkoutFocused || values.checkout ? styles.focused : ''}`}
+                className={`${styles.label} ${styles.dateLabel}`}
               >
                 Ausreise
               </label>
               <ErrorMessage name="checkout" component="div" className={styles.errorMessage} />
             </div>
           </div>
+
 
           <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
             <div className={styles.selectWrapper}>

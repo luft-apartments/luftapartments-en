@@ -7,4 +7,5 @@ export const theme = {
   slate: "#F5F5F5",
   "graydark": "#424242",
   "onhover": "#ff7300",
+  "bluelight": "#1e7ca4",
 };

@@ -19,6 +19,10 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
+  checkin: Yup.date().required('Required'),
+  checkout: Yup.date().required('Required').when('checkin', (checkin, schema) => {
+    return schema.min(checkin, 'Check-Out Date must be after Check-In Date');
+  }),
   apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
@@ -32,6 +36,8 @@ export const ContactForm = ({ onSubmitSuccess }) => {
     surname: false,
     phone: false,
     email: false,
+    checkin: '',
+    checkout: '',
     apartments: false,
     message: false,
   });
@@ -185,6 +191,41 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               <ErrorMessage name="email" component="div" className={styles.errorMessage} />
             </div>
           </div>
+
+          <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
+            <Field
+              type="date"
+              id="checkin"
+              name="checkin"
+              onFocus={() => setFieldStates({ ...fieldStates, checkin: true })}
+              onBlur={(e) => handleFieldChange('checkin', e.target.value)}
+            />
+            <label
+              htmlFor="checkin"
+              className={`${styles.label} ${fieldStates.checkin || initialValues.checkin ? styles.focused : ''}`}
+            >
+              Check-In Date
+            </label>
+            <ErrorMessage name="checkin" component="div" className={styles.errorMessage} />
+          </div>
+
+          <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1600">
+            <Field
+              type="date"
+              id="checkout"
+              name="checkout"
+              onFocus={() => setFieldStates({ ...fieldStates, checkout: true })}
+              onBlur={(e) => handleFieldChange('checkout', e.target.value)}
+            />
+            <label
+              htmlFor="checkout"
+              className={`${styles.label} ${fieldStates.checkout || initialValues.checkout ? styles.focused : ''}`}
+            >
+              Check-Out Date
+            </label>
+            <ErrorMessage name="checkout" component="div" className={styles.errorMessage} />
+          </div>
+
 
           <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
             <div className={styles.selectWrapper}>

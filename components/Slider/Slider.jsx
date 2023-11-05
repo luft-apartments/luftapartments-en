@@ -17,7 +17,7 @@ export const Slider = ({ slides }) => {
       <Swiper
         loop={true}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         modules={[EffectFade, Navigation, Autoplay, A11y]}

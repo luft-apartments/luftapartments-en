@@ -22,7 +22,7 @@ export const SliderReviews = ({ slides }) => {
       <Swiper
         loop={true}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         modules={[A11y, Pagination, Autoplay]}

@@ -8,7 +8,7 @@ import styles from './ContactForm.module.scss';
 
 const initialValues = {
   name: '',
-  surname: '',
+  // surname: '',
   phone: '',
   email: '',
   apartments: '',
@@ -33,7 +33,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   const [fieldStates, setFieldStates] = useState({
     name: false,
-    surname: false,
+    // surname: false,
     phone: false,
     email: false,
     checkin: '',
@@ -104,29 +104,29 @@ export const ContactForm = ({ onSubmitSuccess }) => {
     <div className={styles.formWrapper}>
       <Formik initialValues={initialValues} validationSchema={validationSchema} validateOnBlur onSubmit={onSubmit}>
         <Form className={styles.form}>
-          <div className={styles.inputWrapper}>
-            <div
-              className={styles.inputData}
-              data-aos="fade-up"
-              data-aos-duration="1000"
+          <div
+            className={styles.inputData}
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <Field
+              className={styles.input}
+              type="text"
+              id="name"
+              name="name"
+              onFocus={() => setFieldStates({ ...fieldStates, name: true })}
+              onBlur={(e) => handleFieldChange('name', e.target.value)}
+            />
+            <label
+              htmlFor="name"
+              className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              <Field
-                className={styles.input}
-                type="text"
-                id="name"
-                name="name"
-                onFocus={() => setFieldStates({ ...fieldStates, name: true })}
-                onBlur={(e) => handleFieldChange('name', e.target.value)}
-              />
-              <label
-                htmlFor="name"
-                className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
-              >
-                Name
-              </label>
-              <ErrorMessage name="name" component="div" className={styles.errorMessage} />
-            </div>
+              Name und Nachname
+            </label>
+            <ErrorMessage name="name" component="div" className={styles.errorMessage} />
+          </div>
 
+          {/* <div className={styles.inputWrapper}>
             <div className={styles.inputData}>
               <Field
                 className={styles.input}
@@ -144,7 +144,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               </label>
               <ErrorMessage name="surname" component="div" className={styles.errorMessage} />
             </div>
-          </div>
+          </div> */}
 
           <div className={styles.inputWrapper}>
             <div

@@ -25,7 +25,7 @@ export const MediaBlock = ({
     <div className={styles.mediaBlock}>
       <div className={styles.mediaBlockWrapper}>
         <div className={styles.iconBlock}>
-          {icon && <FontAwesomeIcon icon={icon} style={{ color: '#eeeeee', fontSize: '50px' }} className={styles.icon} />}
+          {icon && <FontAwesomeIcon icon={icon} style={{ color: '#eeeeee', fontSize: '50px', width: '50px' }} className={styles.icon} />}
         </div>
         <div className={styles.textBlock}>
           <h3 className={styles.title}>{title}</h3>

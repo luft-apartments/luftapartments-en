@@ -42,7 +42,7 @@ export const ParamsBlock = ({
           </div>
           <div className={styles.item}>
             <MdWc style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>WC mit Dusche oder Bad: <span>{wc}</span></p>
+            <p className={styles.text}>WC: <span>{wc}</span></p>
           </div>
         </div>
       </div>

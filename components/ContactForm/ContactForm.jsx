@@ -20,9 +20,7 @@ const validationSchema = Yup.object({
   phone: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
   checkin: Yup.date().required('Required'),
-  checkout: Yup.date().required('Required').when('checkin', (checkin, schema) => {
-    return schema.min(checkin, 'Check-Out Date must be after Check-In Date');
-  }),
+  checkout: Yup.date().required('Required'),
   apartments: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
@@ -121,7 +119,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="name"
               className={`${styles.label} ${fieldStates.name || initialValues.name ? styles.focused : ''}`}
             >
-              Name und Nachname
+              Name
             </label>
             <ErrorMessage name="name" component="div" className={styles.errorMessage} />
           </div>
@@ -186,7 +184,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="email"
                 className={`${styles.label} ${fieldStates.email || initialValues.email ? styles.focused : ''}`}
               >
-                Email
+                E-mail
               </label>
               <ErrorMessage name="email" component="div" className={styles.errorMessage} />
             </div>

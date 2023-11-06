@@ -50,12 +50,13 @@ export const GallerySlider = ({ slides }) => {
     originalClass: styles.galleryOriginal,
     thumbnailLabel: slide.label,
     thumbnailLabelClass: styles.galleryThumbnailLabel,
-    // thumbnailPosition: thumbnailPosition,
+    thumbnailPosition: thumbnailPosition,
     renderItem: (item) => (
       <div className={styles.galleryItem}>
         <Image
-          width={3000}
-          height={1080}
+          unoptimized
+          width={2000}
+          height={800}
           src={item.original}
           alt={item.originalAlt}
           title={item.originalTitle}

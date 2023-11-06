@@ -21,6 +21,7 @@ import { Carousel } from "components/Carousel";
 import { AllApartmentsBlock } from "components/AllApartmentsBlock";
 import { GridBlock } from "../GridBlock/GridBlock";
 import { ListCustom } from "../ListCustom/ListCustom";
+import { LimitWidth } from "../LimitWidth/LimitWidth";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -119,6 +120,14 @@ export const BlockRenderer = ({ blocks }) => {
 
   return blocks.map(block => {
     switch (block.name) {
+      case "acf/limitwidth": {
+        // console.log("LIMIT WIDTH: ", block.attributes);
+        return (
+          <LimitWidth key={block.id}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </LimitWidth>
+        )
+      }
       case "acf/gridblock": {
         // console.log("GRID BLOCK: ", block.attributes);
         return (

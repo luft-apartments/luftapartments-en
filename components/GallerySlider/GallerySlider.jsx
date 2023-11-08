@@ -4,6 +4,19 @@ import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/css/image-gallery.css';
 import styles from './GallerySlider.module.scss';
 import Image from 'next/image';
+import MyImage from '../MyImage/MyImage';
+
+const ImageLoading = () => (
+
+  <Image
+    width={300}
+    height={200}
+    src="/images/placeholder.png"
+    alt="luft apartments"
+    title="luft apartments"
+    className={styles.galleryOriginal}
+  />
+);
 
 
 export const GallerySlider = ({ slides }) => {
@@ -51,11 +64,11 @@ export const GallerySlider = ({ slides }) => {
     thumbnailLabel: slide.label,
     thumbnailLabelClass: styles.galleryThumbnailLabel,
     thumbnailPosition: thumbnailPosition,
+    originalheight: 800,
     renderItem: (item) => (
       <div className={styles.galleryItem}>
-        <Image
-          unoptimized
-          width={2500}
+        <MyImage
+          width={2000}
           height={800}
           src={item.original}
           alt={item.originalAlt}
@@ -71,6 +84,7 @@ export const GallerySlider = ({ slides }) => {
       showPlayButton={false}
       showThumbnails={true}
       thumbnailPosition={thumbnailPosition}
+      // loader={<ImageLoading />}
       // slideOnThumbnailOver={true}
       // showIndex={true}
       // thumbnailPosition="right"

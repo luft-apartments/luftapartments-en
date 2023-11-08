@@ -24,3 +24,18 @@ textarea {
 .react-datepicker__input-container {
   height: 40px;
 } */
+
+.image-gallery {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 10/7;
+}
+
+.image-gallery-slide img {
+    object-fit: cover;
+    aspect-ratio: 10/7;
+}
+
+/* .fullscreen .image-gallery-slide img {
+    max-height: 100vh;
+} */

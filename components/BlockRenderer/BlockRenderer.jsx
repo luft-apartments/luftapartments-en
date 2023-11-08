@@ -22,6 +22,7 @@ import { AllApartmentsBlock } from "components/AllApartmentsBlock";
 import { GridBlock } from "../GridBlock/GridBlock";
 import { ListCustom } from "../ListCustom/ListCustom";
 import { LimitWidth } from "../LimitWidth/LimitWidth";
+import { ButtonBook } from "../ButtonBook/ButtonBook";
 
 export const BlockRenderer = ({ blocks }) => {
 
@@ -120,6 +121,17 @@ export const BlockRenderer = ({ blocks }) => {
 
   return blocks.map(block => {
     switch (block.name) {
+      case "acf/buttonbook": {
+        // console.log("BUTTON BOOK: ", block.attributes);
+        return (
+          <ButtonBook
+            key={block.id}
+            label={block.attributes.data.label}
+            destination={block.attributes.data.destination}
+            align={block.attributes.data.align}
+          />
+        )
+      }
       case "acf/limitwidth": {
         // console.log("LIMIT WIDTH: ", block.attributes);
         return (

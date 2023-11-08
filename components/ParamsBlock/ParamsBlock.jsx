@@ -26,7 +26,7 @@ export const ParamsBlock = ({
           </div>
           <div className={styles.item}>
             <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>Ausstattung: <span>{equipment}</span></p>
+            <p className={styles.text}>Küche: <span>{equipment}</span></p>
           </div>
           <div className={styles.item}>
             <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />

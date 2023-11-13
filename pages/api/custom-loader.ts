@@ -12,7 +12,7 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
         res.end();
         return;
       }
-      const width = (req.query.w as string) ?? "2000"; //default width
+      const width = (req.query.w as string) ?? "384"; //default width
       const quality = (req.query.q as string) ?? "75"; //default quality
       // 👇 get the image data using axios
       const response = await axios.get(decodeURI(url), {

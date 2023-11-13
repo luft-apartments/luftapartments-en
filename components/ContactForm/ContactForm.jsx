@@ -12,6 +12,7 @@ const initialValues = {
   phone: '',
   email: '',
   apartments: '',
+  number: '',
   message: '',
 };
 
@@ -22,6 +23,7 @@ const validationSchema = Yup.object({
   checkin: Yup.date().required('Required'),
   checkout: Yup.date().required('Required'),
   apartments: Yup.string().required('Required'),
+  number: Yup.string().required('Required'),
   message: Yup.string().required('Required'),
 });
 
@@ -37,6 +39,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
     checkin: '',
     checkout: '',
     apartments: false,
+    number: false,
     message: false,
   });
 
@@ -228,34 +231,61 @@ export const ContactForm = ({ onSubmitSuccess }) => {
             </div>
           </div>
 
-
-          <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
-            <div className={styles.selectWrapper}>
-              <label
-                htmlFor="apartments"
-                className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
-              >
-                Wunschapartment
-              </label>
-              <Field
-                as="select"
-                id="apartments"
-                name="apartments"
-                onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
-                onBlur={(e) => handleFieldChange('apartments', e.target.value)}
-                className={styles.select}
-              >
-                <option value=""></option>
-                <option value="Apartment 2A">Apartment 2A</option>
-                <option value="Apartment 3A">Apartment 3A</option>
-                <option value="Apartment 1B">Apartment 1B</option>
-                <option value="Apartment 2B">Apartment 2B</option>
-                <option value="Apartment 3B">Apartment 3B</option>
-              </Field>
-              <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
+          <div className={styles.inputWrapper}>
+            <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
+              <div className={styles.selectWrapper}>
+                <label
+                  htmlFor="apartments"
+                  className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
+                >
+                  Wunschapartment
+                </label>
+                <Field
+                  as="select"
+                  id="apartments"
+                  name="apartments"
+                  onFocus={() => setFieldStates({ ...fieldStates, apartments: true })}
+                  onBlur={(e) => handleFieldChange('apartments', e.target.value)}
+                  className={styles.select}
+                >
+                  <option value=""></option>
+                  <option value="Apartment 2A">Apartment 2A</option>
+                  <option value="Apartment 3A">Apartment 3A</option>
+                  <option value="Apartment 1B">Apartment 1B</option>
+                  <option value="Apartment 2B">Apartment 2B</option>
+                  <option value="Apartment 3B">Apartment 3B</option>
+                </Field>
+                <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
+              </div>
+            </div>
+            <div className={styles.inputData} data-aos="fade-up" data-aos-duration="1800">
+              <div className={styles.selectWrapper}>
+                <label
+                  htmlFor="number"
+                  className={`${styles.label} ${fieldStates.number || initialValues.number ? styles.focused : ''}`}
+                >
+                  Anzahl der Personen
+                </label>
+                <Field
+                  as="select"
+                  id="number"
+                  name="number"
+                  onFocus={() => setFieldStates({ ...fieldStates, number: true })}
+                  onBlur={(e) => handleFieldChange('number', e.target.value)}
+                  className={styles.select}
+                >
+                  <option value=""></option>
+                  <option value="Apartment 2A">1</option>
+                  <option value="Apartment 3A">2</option>
+                  <option value="Apartment 1B">3</option>
+                  <option value="Apartment 2B">4</option>
+                  <option value="Apartment 3B">5</option>
+                  <option value="Apartment 3B">Mehr als 5</option>
+                </Field>
+                <ErrorMessage name="number" component="div" className={styles.errorMessage} />
+              </div>
             </div>
           </div>
-
 
           <div
             className={`${styles.inputData} ${styles.textarea}`}

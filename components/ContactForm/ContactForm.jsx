@@ -275,12 +275,12 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                   className={styles.select}
                 >
                   <option value=""></option>
-                  <option value="Apartment 2A">1</option>
-                  <option value="Apartment 3A">2</option>
-                  <option value="Apartment 1B">3</option>
-                  <option value="Apartment 2B">4</option>
-                  <option value="Apartment 3B">5</option>
-                  <option value="Apartment 3B">Mehr als 5</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="Mehr als 5">Mehr als 5</option>
                 </Field>
                 <ErrorMessage name="number" component="div" className={styles.errorMessage} />
               </div>

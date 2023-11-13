@@ -17,14 +17,14 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Required'),
-  phone: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email address').required('Required'),
-  checkin: Yup.date().required('Required'),
-  checkout: Yup.date().required('Required'),
-  apartments: Yup.string().required('Required'),
-  number: Yup.string().required('Required'),
-  message: Yup.string().required('Required'),
+  name: Yup.string().required('Pflichtfeld'),
+  phone: Yup.string().required('Pflichtfeld'),
+  email: Yup.string().email('Ungültige E-Mail-Adresse').required('Pflichtfeld'),
+  checkin: Yup.date().required('Pflichtfeld'),
+  checkout: Yup.date().required('Pflichtfeld'),
+  apartments: Yup.string().required('Pflichtfeld'),
+  number: Yup.string().required('Pflichtfeld'),
+  message: Yup.string().required('Pflichtfeld'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {

@@ -27,9 +27,6 @@ export default async function RootLayout({ children }) {
   const footerData = await getFooter();
   return (
     <html lang="de" className={`${raleway.variable} ${inter.variable}`}>
-      <head>
-        <meta name="robots" content="noindex, nofollow" />
-      </head>
       {/* <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-7P2WY7H1JN"

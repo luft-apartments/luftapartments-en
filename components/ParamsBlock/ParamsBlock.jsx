@@ -36,10 +36,10 @@ export const ParamsBlock = ({
             <MdOutlineSignalWifi4Bar style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Internet: <span>{internet}</span></p>
           </div>
-          <div className={styles.item}>
+          {/* <div className={styles.item}>
             <MdDirectionsCar style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>Parkplatz: <span>{parking}</span></p>
-          </div>
+          </div> */}
           <div className={styles.item}>
             <MdWc style={{ color: '#fff', fontSize: '20px' }} />
             <p className={styles.text}>WC: <span>{wc}</span></p>

@@ -2,9 +2,8 @@ export default function robots() {
   return {
     rules: {
       userAgent: '*',
-      // allow: '/',
-      disallow: '/',
+      allow: '/',
     },
-    // sitemap: 'https://acme.com/sitemap.xml',
+    sitemap: 'https://luft-apartments.de/sitemap.xml',
   }
 }

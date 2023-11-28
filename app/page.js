@@ -11,7 +11,7 @@ export default async function Home() {
   }
   return (
     <>
-      <Script
+      {/* <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-EJJBPBE1YS"
       />
@@ -23,7 +23,7 @@ export default async function Home() {
 
           gtag('config', 'G-EJJBPBE1YS');
         `}
-      </Script>
+      </Script> */}
       <BlockRenderer blocks={data} />
     </>
   )

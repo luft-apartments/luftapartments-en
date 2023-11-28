@@ -5,9 +5,7 @@ export async function genetatePages() {
         pages {
           nodes {
             date
-            seo {
-              opengraphUrl
-            }
+            uri
           }
         }
       }
@@ -32,7 +30,7 @@ export default async function sitemap() {
 
   const pages = pagesData.map(page => {
     return {
-      url: page.seo.opengraphUrl, // Здесь используйте URL, который вы хотите добавить в карту сайта
+      url: `https://luft-apartments.de${page.uri}`, // Здесь используйте URL, который вы хотите добавить в карту сайта
       lastModified: new Date(page.date), // Устанавливайте дату изменения страницы
       changeFrequency: 'weekly', // Установите частоту изменения по своему усмотрению
       priority: 0.8, // Установите приоритет по своему усмотрению

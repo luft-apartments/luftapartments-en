@@ -70,6 +70,7 @@ export const GallerySlider = ({ slides }) => {
         <Image
           width={2000}
           height={800}
+          priority={true}
           src={item.original}
           alt={item.originalAlt}
           title={item.originalTitle}

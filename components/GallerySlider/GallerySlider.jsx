@@ -67,8 +67,7 @@ export const GallerySlider = ({ slides }) => {
     originalheight: 800,
     renderItem: (item) => (
       <div className={styles.galleryItem}>
-        <MyImage
-          unoptimized
+        <Image
           width={2000}
           height={800}
           src={item.original}

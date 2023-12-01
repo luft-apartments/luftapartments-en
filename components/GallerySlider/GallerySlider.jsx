@@ -67,10 +67,9 @@ export const GallerySlider = ({ slides }) => {
     originalheight: 800,
     renderItem: (item) => (
       <div className={styles.galleryItem}>
-        <Image
+        <MyImage
           width={2000}
           height={800}
-          priority={true}
           src={item.original}
           alt={item.originalAlt}
           title={item.originalTitle}

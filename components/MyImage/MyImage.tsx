@@ -18,6 +18,7 @@ const MyImage = (props: ImageProps) => {
             alt="Loading..."
             width={2000}
             height={800}
+            className={styles.loaderImage}
           />
         </div>
       )}

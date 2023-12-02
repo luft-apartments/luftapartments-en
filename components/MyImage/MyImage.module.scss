@@ -14,4 +14,15 @@
   height: 100%;
 }
 
-/* No need for .loader styles since it's replaced with an Image */
+.loaderImage {
+  animation: flicker 0.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0.5; /* Adjust the opacity as needed */
+  }
+  50% {
+    opacity: 1;
+  }
+}

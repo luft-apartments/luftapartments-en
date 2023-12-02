@@ -14,7 +14,7 @@ const MyImage = (props: ImageProps) => {
           {/* Replace the loader content with your image */}
           <Image
             unoptimized
-            src="/images/placeholder.png"
+            src="/images/loader.png"
             alt="Loading..."
             width={2000}
             height={800}

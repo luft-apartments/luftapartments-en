@@ -12,10 +12,11 @@
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: #eeeeee;
 }
 
 .loaderImage {
-  animation: flicker 0.5s infinite alternate;
+  animation: flicker 1s infinite alternate;
 }
 
 @keyframes flicker {

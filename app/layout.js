@@ -26,7 +26,10 @@ export default async function RootLayout({ children }) {
   const data = await getMenu();
   const footerData = await getFooter();
   return (
-    <html lang="de" className={`${raleway.variable} ${inter.variable}`}>
+    <html lang="en" className={`${raleway.variable} ${inter.variable}`}>
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
       <body className='font-body'>
         <MainMenu
           boldText={data.boldText}

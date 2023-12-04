@@ -2,8 +2,9 @@ export default function robots() {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
+      // allow: '/',
+      disallow: '/',
     },
-    sitemap: 'https://luft-apartments.de/sitemap.xml',
+    sitemap: 'https://en.luft-apartments.de/sitemap.xml',
   }
 }

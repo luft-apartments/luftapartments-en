@@ -7,7 +7,7 @@ export const ApartmentsData = ({ adress, area, cost, floor, pets, rooms }) => {
     <div className={styles.apartmentsData}>
       <div
         itemScope
-        itemType="http://schema.org/Offer"
+        itemType="https://schema.org/Offer"
       >
         <h2 itemProp="price" className={styles.title}>
           Preis: ab <span>{cost}€</span> / Nacht
@@ -28,9 +28,9 @@ export const ApartmentsData = ({ adress, area, cost, floor, pets, rooms }) => {
           <FaDog style={{ color: '#1e7ca4', fontSize: '20px' }} />
           <p className={styles.text}>{pets}</p>
         </div>
-        <div className={`${styles.dataItem} ${styles.dataItemFlex}`}>
+        <div itemScope itemType="https://schema.org/Apartment" className={`${styles.dataItem} ${styles.dataItemFlex}`}>
           <FaLocationArrow style={{ color: '#1e7ca4', fontSize: '20px' }} />
-          <p className={styles.textValue}>{adress}</p>
+          <p itemProp="address" className={styles.textValue}>{adress}</p>
         </div>
       </div>
     </div>

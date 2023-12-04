@@ -78,8 +78,8 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
   return (
     <header className={styles.header}>
       <div className={styles.headerDescription}>
-        <div className="container">
-          <p className={styles.headerDescriptionText}>
+        <div itemScope itemType="https://schema.org/Apartment" className="container">
+          <p itemProp="address" className={styles.headerDescriptionText}>
             <span className={styles.boldText}><strong>{boldText}</strong> </span>
             <span className={styles.regularText}>{regularText}</span>
           </p>

@@ -31,9 +31,9 @@ const CookieConsent = () => {
 
   return (
     <div className={styles.cookieBanner}>
-      <p>Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern.</p>
-      <button className={styles.buttonCookies} onClick={handleAccept}>Akzeptieren</button>
-      <button className={styles.buttonCookies} onClick={handleDecline}>Ablehnen</button>
+      <p>This website uses cookies to improve your experience.</p>
+      <button className={styles.buttonCookies} onClick={handleAccept}>Accept</button>
+      <button className={styles.buttonCookies} onClick={handleDecline}>Decline</button>
     </div>
   );
 };

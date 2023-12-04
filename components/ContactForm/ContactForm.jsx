@@ -17,14 +17,14 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Pflichtfeld'),
-  phone: Yup.string().required('Pflichtfeld'),
-  email: Yup.string().email('Ungültige E-Mail-Adresse').required('Pflichtfeld'),
-  checkin: Yup.date().required('Pflichtfeld'),
-  checkout: Yup.date().required('Pflichtfeld'),
-  apartments: Yup.string().required('Pflichtfeld'),
-  number: Yup.string().required('Pflichtfeld'),
-  message: Yup.string().required('Pflichtfeld'),
+  name: Yup.string().required('Required'),
+  phone: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  checkin: Yup.date().required('Required'),
+  checkout: Yup.date().required('Required'),
+  apartments: Yup.string().required('Required'),
+  number: Yup.string().required('Required'),
+  message: Yup.string().required('Required'),
 });
 
 export const ContactForm = ({ onSubmitSuccess }) => {
@@ -90,8 +90,8 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               <path d="M15 7L7.99998 14L4.99994 11M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#ff7300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div className={styles.messageTextWrapper}>
-              <h3 className={styles.messageTitle}>Danke schön!</h3>
-              <p className={styles.messageText}>Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.</p>
+              <h3 className={styles.messageTitle}>Thank you!</h3>
+              <p className={styles.messageText}>We received your message and will contact you soon.</p>
             </div>
             {/* <button onClick={closeMessagePopup}>Close</button> */}
           </div>
@@ -165,7 +165,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="phone"
                 className={`${styles.label} ${fieldStates.phone || initialValues.phone ? styles.focused : ''}`}
               >
-                Telefonnummer
+                Phone
               </label>
               <ErrorMessage name="phone" component="div" className={styles.errorMessage} />
             </div>
@@ -187,7 +187,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="email"
                 className={`${styles.label} ${fieldStates.email || initialValues.email ? styles.focused : ''}`}
               >
-                E-mail
+                Email
               </label>
               <ErrorMessage name="email" component="div" className={styles.errorMessage} />
             </div>
@@ -208,7 +208,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="checkin"
                 className={`${styles.label} ${styles.dateLabel}`}
               >
-                Einreise
+                Check in date
               </label>
               <ErrorMessage name="checkin" component="div" className={styles.errorMessage} />
             </div>
@@ -225,7 +225,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                 htmlFor="checkout"
                 className={`${styles.label} ${styles.dateLabel}`}
               >
-                Ausreise
+                Check out date
               </label>
               <ErrorMessage name="checkout" component="div" className={styles.errorMessage} />
             </div>
@@ -238,7 +238,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                   htmlFor="apartments"
                   className={`${styles.label} ${fieldStates.apartments || initialValues.apartments ? styles.focused : ''}`}
                 >
-                  Wunschapartment
+                  Desired apartment
                 </label>
                 <Field
                   as="select"
@@ -249,10 +249,10 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                   className={styles.select}
                 >
                   <option value=""></option>
-                  <option value="Apartment 2A">Apartment 2A</option>
-                  <option value="Apartment 3A">Apartment 3A</option>
                   <option value="Apartment 1B">Apartment 1B</option>
+                  <option value="Apartment 2A">Apartment 2A</option>
                   <option value="Apartment 2B">Apartment 2B</option>
+                  <option value="Apartment 3A">Apartment 3A</option>
                   <option value="Apartment 3B">Apartment 3B</option>
                 </Field>
                 <ErrorMessage name="apartments" component="div" className={styles.errorMessage} />
@@ -264,7 +264,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                   htmlFor="number"
                   className={`${styles.label} ${fieldStates.number || initialValues.number ? styles.focused : ''}`}
                 >
-                  Anzahl der Personen
+                  Number of persons
                 </label>
                 <Field
                   as="select"
@@ -280,7 +280,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
-                  <option value="Mehr als 5">Mehr als 5</option>
+                  <option value="More than 5">More than 5</option>
                 </Field>
                 <ErrorMessage name="number" component="div" className={styles.errorMessage} />
               </div>
@@ -303,7 +303,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               htmlFor="message"
               className={`${styles.labelTextarea} ${fieldStates.message || initialValues.message ? styles.focused : ''}`}
             >
-              Ihre Nachricht
+              Message
             </label>
             <ErrorMessage name="message" component="div" className={styles.errorMessage} />
           </div>
@@ -313,7 +313,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
               className={styles.button}
               type="submit"
             >
-              Anfrage senden
+              Send request
             </button>
           </div>
         </Form>

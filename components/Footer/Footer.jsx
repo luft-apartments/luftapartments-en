@@ -25,7 +25,7 @@ export const Footer = ({
               </Link>
             </div>
             <div className={styles.footerDataItem}>
-              <p className={styles.footerDataItemTitle}>Wohnungen</p>
+              <p className={styles.footerDataItemTitle}>Apartments</p>
               {(footerLinksApartments || []).map((link) => (
                 <div key={link.id}>
                   <Link href={link.destination || "/"} className={styles.link}>
@@ -35,7 +35,7 @@ export const Footer = ({
               ))}
             </div>
             <div className={styles.footerDataItem}>
-              <p className={styles.footerDataItemTitle}>Über uns</p>
+              <p className={styles.footerDataItemTitle}>About Us</p>
               {(footerLinksPages || []).map((link) => (
                 <div key={link.id}>
                   <Link href={link.destination || "/"} className={styles.link}>
@@ -45,7 +45,7 @@ export const Footer = ({
               ))}
             </div>
             <div className={styles.footerDataItem}>
-              <p className={styles.footerDataItemTitle}>Telefon & WhatsApp</p>
+              <p className={styles.footerDataItemTitle}>Phone & WhatsApp</p>
               <Link href="tel:+491772493525" className={styles.link}>+49 177 249 3525</Link>
               <Link href="tel:+491713821500" className={styles.link}>+49 171 3821 500</Link>
             </div>

@@ -38,11 +38,11 @@ export const MediaBlock = ({
               <span>{textEnd}</span>
             </p>
             <div className={styles.days}>
-              <p className={styles.day}>Montag bis Freitag:</p>
+              <p className={styles.day}>Monday to Friday:</p>
               <p className={styles.weekdays}>{weekdays}</p>
             </div>
             <div className={styles.days}>
-              <p className={styles.day}>Samstag:</p>
+              <p className={styles.day}>Saturday:</p>
               <p className={styles.weekends}>{weekends}</p>
             </div>
           </div>

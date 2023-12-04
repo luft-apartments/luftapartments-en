@@ -18,19 +18,19 @@ export const ParamsBlock = ({
         <div className={styles.items}>
           <div className={styles.item}>
             <MdBalcony style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>Balkon: <span>{balcony}</span></p>
+            <p className={styles.text}>Balcony: <span>{balcony}</span></p>
           </div>
           <div className={styles.item}>
             <MdOutlineBed style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>Schlafzimmer: <span>{bedrooms}</span></p>
+            <p className={styles.text}>Bedrooms: <span>{bedrooms}</span></p>
           </div>
           <div className={styles.item}>
             <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>Küche: <span>{equipment}</span></p>
+            <p className={styles.text}>Kitchen: <span>{equipment}</span></p>
           </div>
           <div className={styles.item}>
             <MdOutlineDesk style={{ color: '#fff', fontSize: '20px' }} />
-            <p className={styles.text}>Möbel: <span>{furniture}</span></p>
+            <p className={styles.text}>Furniture: <span>{furniture}</span></p>
           </div>
           <div className={styles.item}>
             <MdOutlineSignalWifi4Bar style={{ color: '#fff', fontSize: '20px' }} />

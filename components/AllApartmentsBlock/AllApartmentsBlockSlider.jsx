@@ -30,7 +30,7 @@ export const AllApartmentsBlockSlider = ({ data }) => {
                 )}
                 <div className={styles.apartmentData}>
                   {apartment.title && <h2 className={styles.apartmentTitle}>{apartment.title}</h2>}
-                  <button className={styles.button}>Zum Apartment</button>
+                  <button className={styles.button}>View Apartment</button>
                 </div>
               </Link>
             </div>

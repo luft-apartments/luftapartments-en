@@ -39,13 +39,29 @@
 }
 
 .dropdownMenu {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none; /* Disable pointer events when the dropdown is not visible */
   position: absolute;
   top: 100%;
   right: 0;
-  // left: 0;
-  display: none;
-  // display: flex;
-  // flex-direction: column;
+  z-index: 1000;
+  // background-color: #fff;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // border-radius: 4px;
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  &.dropdownVisible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Enable pointer events when the dropdown is visible */
+  }
+}
+
+
+.dropdownTransition {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .dropdownVisible {

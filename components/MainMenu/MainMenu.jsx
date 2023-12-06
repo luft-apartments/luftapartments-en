@@ -6,6 +6,7 @@ import styles from './MainMenu.module.scss';
 import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
 gsap.registerPlugin(ScrollTrigger);
 
 export const MainMenu = ({ items, logo, boldText, regularText }) => {
@@ -93,7 +94,7 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
             </div>
           </Link>
         </div>
-        <nav className={`${styles.nav} ${isNavVisible ? styles.navVisible : ''}`} onClick={closeMenus}>
+        <nav className={`${styles.nav} ${isNavVisible ? styles.navVisible : ''}`}>
           {(items || []).map((item) => {
             {/* console.log("pathname:", pathname);
             console.log("item.destination:", item.destination); */}
@@ -147,17 +148,9 @@ export const MainMenu = ({ items, logo, boldText, regularText }) => {
               </div>
             )
           })}
-          {/* <div className={styles.icons}>
-            {(icons || []).map((icon) => (
-              <Link
-                key={icon.id}
-                href={icon.destination}
-                target='_blank'
-                className={styles.iconLink}
-                dangerouslySetInnerHTML={{ __html: icon.label }}
-              />
-            ))}
-          </div> */}
+          <div className={styles.lang}>
+            <LanguageDropdown />
+          </div>
         </nav>
         <div
           className={`${styles.burgerMenu} ${isNavVisible ? styles.open : ''}`}

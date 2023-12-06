@@ -22,6 +22,7 @@ const ImageLoading = () => (
 export const GallerySlider = ({ slides }) => {
 
   const [thumbnailPosition, setThumbnailPosition] = useState('right');
+  const [showFullscreenButton, setShowFullscreenButton] = useState(true);
 
   useEffect(() => {
     // Функция для обработки изменения размера окна
@@ -32,6 +33,7 @@ export const GallerySlider = ({ slides }) => {
       // Обновляем свойство thumbnailPosition в зависимости от ширины окна
       if (windowWidth <= 768) {
         setThumbnailPosition('bottom');
+        setShowFullscreenButton(false);
       } else {
         setThumbnailPosition('right');
       }
@@ -82,6 +84,7 @@ export const GallerySlider = ({ slides }) => {
   return (
     <ImageGallery
       showPlayButton={false}
+      showFullscreenButton={showFullscreenButton}
       showThumbnails={true}
       thumbnailPosition={thumbnailPosition}
       // loader={<ImageLoading />}

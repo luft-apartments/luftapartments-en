@@ -54,7 +54,6 @@ export const Footer = ({
       </div>
       <div className={styles.footerCopyright}>
         <div className="container">
-          <p>{copyright}</p>
           <p>Copyright © {new Date().getFullYear()} Luft-Apartments. All rights reserved</p>
         </div>
       </div>

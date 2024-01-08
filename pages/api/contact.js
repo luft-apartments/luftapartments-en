@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       const mailOptions = {
         from: email,
         to: process.env.EMAIL_USER,
-        subject: `New message from ${name} - EN Version`,
+        subject: `New message from ${name} - Luft Apartments`,
         text: `${message}\n\nContact Details:\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nApartment: ${apartments}\nNumber of Guests: ${number}\nCheck-In Date: ${checkin}\nCheck-Out Date: ${checkout}`,
       };
 

@@ -2,7 +2,6 @@ import { BlockRenderer } from "components/BlockRenderer";
 import { getPage } from "utils/getPage"
 import { notFound } from 'next/navigation'
 import { getSeo } from "utils/getSeo";
-import { headers } from "next/dist/client/components/headers"
 import Script from "next/script";
 
 export default async function Home() {
@@ -10,9 +9,7 @@ export default async function Home() {
   if (!data) {
     notFound();
   }
-  // const _headers = headers();
-  // const currentUrlMain = _headers.get("x-url");
-  // console.log(currentUrlMain);
+
   return (
     <>
       <Script

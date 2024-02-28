@@ -7,53 +7,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/apartment_3a/',
-        destination: '/apartments/apartment-3a',
-        permanent: true,
-      },
-      {
-        source: '/apartment-2a/',
-        destination: '/apartments/apartment-2a',
-        permanent: true,
-      },
-      {
-        source: '/unser-apartment-1b/',
-        destination: '/apartments/apartment-1b',
-        permanent: true,
-      },
-      {
-        source: '/apartment-2b/',
-        destination: '/apartments/apartment-2b',
-        permanent: true,
-      },
-      {
-        source: '/apartment-3b/',
-        destination: '/apartments/apartment-3b',
-        permanent: true,
-      },
-      {
-        source: '/apartment_3a',
-        destination: '/apartments/apartment-3a',
-        permanent: true,
-      },
-      {
-        source: '/apartment-2a',
-        destination: '/apartments/apartment-2a',
-        permanent: true,
-      },
-      {
-        source: '/unser-apartment-1b',
-        destination: '/apartments/apartment-1b',
-        permanent: true,
-      },
-      {
-        source: '/apartment-2b',
-        destination: '/apartments/apartment-2b',
-        permanent: true,
-      },
-      {
-        source: '/apartment-3b',
-        destination: '/apartments/apartment-3b',
+        source: '/:path*',
+        destination: 'https://www.bandziuk.website',
         permanent: true,
       },
     ];
